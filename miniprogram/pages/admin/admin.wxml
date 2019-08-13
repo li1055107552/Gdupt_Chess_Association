@@ -1,0 +1,8 @@
+
+<view>
+  <form>
+    <button form-type="submit" bindtap="onAdd">执行</button>
+  
+  </form>
+
+</view>

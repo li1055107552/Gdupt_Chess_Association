@@ -1,0 +1,94 @@
+
+
+.former{
+  padding: 2rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  text-align: center;
+}
+
+.login{
+  text-align:left;
+  ruby-align:right;
+}
+
+
+.newer,.newer1,.newer2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: none;
+  border: none;
+}
+
+.newer text,.newer1 text,.newer2 text{
+  text-align: right;
+  padding: auto;
+  font-size: 16px;
+  flex-grow: 0.5rem;
+  border-radius: 5rem;
+  border: 1rem;
+  border-color: black;
+}
+
+.newer input{
+  font-size: 0.7rem;
+  color: black;
+  flex-grow: 10rem;
+  border-radius: 10rem;
+  box-shadow: 0 0 0.15rem #aaa;
+  padding: 0.3rem;
+  width:50%;
+  position: relative;
+  left: 10%;
+  margin-right: 20px;
+  vertical-align: middle;
+  padding-left: 25px;
+}
+
+.newer1 input{
+  font-size: 0.7rem;
+  color: black;
+  flex-grow: 10rem;
+  border-radius: 10rem;
+  box-shadow: 0 0 0.15rem #aaa;
+  padding: 0.3rem;
+  width:50%;
+  position: relative;
+  left: 5%;
+  margin-right: 20px;
+  vertical-align: middle;
+  padding-left: 25px;
+}
+
+.newer2 input{
+  font-size: 0.7rem;
+  color: black;
+  flex-grow: 10rem;
+  border-radius: 10rem;
+  box-shadow: 0 0 0.15rem #aaa;
+  padding: 0.3rem;
+  width:50%;
+  position: relative;
+  left: 5%;
+  margin-right: 20px;
+  vertical-align: middle;
+  padding-left: 25px;
+}
+
+.plaseholder{
+  left: 3px;
+  font-size: 12px;
+}
+
+.submit{
+  height:auto;
+  width:auto;
+  outline: none;
+  padding:0;
+  background-color:rgb(0,178,106);
+  color: white;
+  border: none;
+  text-align: center;
+  line-height:auto;
+  margin-top:1rem;
+}

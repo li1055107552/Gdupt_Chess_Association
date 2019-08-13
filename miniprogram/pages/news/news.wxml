@@ -1,0 +1,60 @@
+
+<view class="former"> 
+
+    <form action="" bindsubmit="check_submit" bindreset="resets" class="login">
+        
+        <view class="newer1">
+          <text space="ensp">用户名  </text>
+          <input type="text" id="username" placeholder="请设置用户名" placeholder-class="plaseholder" bindinput="username" focus="true" confirm-type="next" maxlength="8" />
+        </view>
+        
+        <text>\n</text>
+
+        <view class="newer">
+          <text space="nbsp">姓    名</text>
+          <input type="text" id="number" placeholder="请输入姓名" placeholder-class="plaseholder" bindinput="name" confirm-type="next" />
+        </view>
+
+        <text>\n</text>
+        
+        <view class="newer">
+          <text space="nbsp">学    号</text>
+          <input type="number" id="number" placeholder="请输入学号" placeholder-class="plaseholder" bindinput="number" confirm-type="next" maxlength="11" />
+        </view>
+
+        <text>\n</text>
+        
+        <view class="newer">
+          <text space="nbsp">学    院</text>
+          <input type="text" id="number" placeholder="请输入学院" placeholder-class="plaseholder" bindinput="school" confirm-type="next"/>
+        </view>
+
+        <text>\n</text>
+        
+        <view class="newer">
+          <text space="nbsp">班    级</text>
+          <input type="text" id="number" placeholder="请输入班级" placeholder-class="plaseholder"  bindinput="classname" confirm-type="next"/>
+        </view>
+
+        <text>\n</text>
+        
+        <view class="newer">
+          <text space="nbsp">密    码</text>
+          <input type="password" id="password" placeholder="请设置密码" placeholder-class="plaseholder"  bindinput="password" confirm-type="next"/>
+        </view> 
+        
+        <text>\n</text>
+        
+        <view class="newer2">
+          <text>确认密码</text>
+          <input type="password" id="password2" placeholder="请再次输入密码" placeholder-class="plaseholder"  bindinput="password2" confirm-type="done" />
+        </view> 
+        <text>\n</text>
+
+        <button form-type="submit" value="     注册     " class="submit" >注册</button>
+        <text class="nbsp2"></text>
+        <button form-type="reset"  value="     重置     " class="submit" >重置</button>
+      </form>
+
+</view>
+
