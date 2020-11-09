@@ -1,0 +1,27 @@
+<!--pages/study/study.wxml-->
+
+<!-- 服务器 -->
+<image class="background" src="{{background_url}}" 
+      style="width:{{winWidth}}px" mode="heightFix">
+</image>
+
+<!-- 云数据库-云存储 -->
+<!-- <image class="background" src="https://6764-gdupt-qx-1300020785.tcb.qcloud.la/study_Img/mutouBackground.jpg?sign=ca917219a644b04730f2481db50a0662&t=1587004791" 
+      style="height:{{winHeight}}px;width:{{winWidth}}px">
+</image> -->
+
+<view class="content">
+
+  <block wx:for="{{list}}" wx:key="*this">
+    <view class="group" bindtap="click" id="{{item.name}}">
+      <image src="{{item.image}}"></image>
+      <view class="group_text">
+        <text class="group_text_CN">{{item.CN}}</text>
+        <text class="group_text_EN">{{item.EN}}</text>
+      </view>
+    </view>
+  
+  </block>
+
+
+</view>

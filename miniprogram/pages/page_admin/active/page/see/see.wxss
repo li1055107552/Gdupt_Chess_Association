@@ -1,0 +1,52 @@
+/* pages/page_admin/active/see/see.wxss */
+
+.all{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 10rpx 30rpx 10rpx;
+  align-items: center;
+}
+
+.title{
+  font-size: 16px;
+  padding-bottom: 20rpx;
+}
+.title text{
+  padding: 10rpx;
+}
+
+.active{
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  border: 1px solid gold;
+  padding: 20rpx 10rpx 10rpx 20rpx;
+  line-height: 50rpx;
+  margin-top: -20rpx;
+}
+.msg{
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  padding-bottom:5rpx;
+  align-items: center;
+}
+button{
+  position: relative;
+  left: 32%;
+  top: 55rpx;
+  margin: 0;
+}
+.active label{
+  text-align: center;
+  width: 250rpx;
+}
+.active text{
+  text-align: left;
+  width: 300rpx;
+}
+
+.un{
+  color: rgb(50, 50, 255);
+  text-decoration: underline rgb(50, 50, 255);
+}

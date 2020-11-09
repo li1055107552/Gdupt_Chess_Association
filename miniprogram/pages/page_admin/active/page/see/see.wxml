@@ -1,0 +1,45 @@
+<!--pages/page_admin/active/see/see.wxml-->
+<view class="all">
+
+	<view class="title">
+		<text>总活动数:{{total}}</text>
+		<text style="color:blue">未开始:{{become}} </text>
+		<text style="color:green">进行中:{{ing}}  </text>
+		<text style="color:red">已结束:{{before}} </text>
+	</view>
+
+	<block wx:for="{{active}}" wx:key="activeCode">
+      <button id="{{index}}" bindtap="click" size="mini">{{showBtn[index][1]}}</button>
+		<view class="active">
+			
+			<view class="msg"><label>活动名：  </label> <text>{{active[index].activeName}}</text> </view>
+			<view class="msg"><label>活动编码：</label> <text>{{active[index].activeCode}}</text> </view>
+			<view class="msg"><label>活动地点：</label> <text>{{active[index].activeArea}}</text> </view>
+			<view class="msg"><label>活动时间：</label> <text>{{active[index].raceStart}} </text> </view>
+			<view wx:if="{{showBtn[index][0]}}">
+				<view class="msg"><label>报名开始：    </label> <text>{{active[index].enterStart}}          </text></view>
+				<view class="msg"><label>报名截止：    </label> <text style="color:red">{{active[index].enterEnd}}</text></view>
+				<view class="msg"><label class="un" id="{{index}}" catchtap="clock">已报名人数：  </label> <text>{{active[index].enrolment}}</text></view>
+				<view class="msg"><label class="un" id="{{index}}" catchtap="enter">已签到人数：  </label> <text>{{active[index].clocked}}  </text></view>
+				<view class="msg"><label>是否允许报名：</label> <text>{{active[index].state_enter?"是":"否"}}</text></view>
+				<view class="msg"><label>是否允许签到：</label> <text>{{active[index].state_clock?"是":"否"}}</text></view>
+			</view>
+			<view class="msg">
+				<label>活动状态：</label> 
+				<text wx:if="{{active[index].state == '未开始'}}" style="color:blue"> {{active[index].state}}</text>
+				<text wx:if="{{active[index].state == '进行中'}}" style="color:green">{{active[index].state}}</text>
+				<text wx:if="{{active[index].state == '已结束'}}" style="color:red">  {{active[index].state}}</text>
+			</view>
+
+			<view class="msg">
+        <label>活动对象：</label> 
+        <text wx:if="{{active[index].who == 'member'}}">全校师生</text>
+        <text wx:if="{{active[index].who == 'vip'}}">会员</text>
+        <text wx:if="{{active[index].who == 'secretary'}}">干事</text>
+      </view>
+
+		</view>
+
+	</block>
+
+</view>

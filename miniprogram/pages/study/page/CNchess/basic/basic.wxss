@@ -1,0 +1,106 @@
+/* pages/study/CNchess//basic/basic.wxss */
+
+.all{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 左边侧栏 + ‘棋盘’欢迎语 */
+.head{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-width: 110rpx !important;
+  padding: 50rpx 0;
+  background-image: url("http://r.photo.store.qq.com/psc?/V13scSie2Jvl7O/uBYLWP1rBn1tc1x0uHNIVbJXa0ZkOHbbZfssvwKVEgNbxIcNtGn5C.F.r*rsrLtMFLSvH*klc5catScl80lPAK7r4ZUcubxmh9tQozy3yXU!/r");
+  /* background-image: url("https://graph.baidu.com/resource/1266109345c029528b43101588371882.jpg"); */
+}
+.head image{
+  height: 85rpx;
+  width: 85rpx;
+  padding-bottom: 10rpx;
+}
+.head_group{
+  padding-right: 5rpx;
+  padding-bottom: 10rpx;
+}
+.body_group_welcome{
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  padding-left: 5rpx;
+  margin-bottom: 20rpx;
+  line-height: 50rpx;
+  letter-spacing: 2rpx;
+  font-size: 18px;
+}
+.head_group_introduce{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 50%;
+  background-color: rgb(255, 200, 135);
+  box-shadow: 1rpx 5rpx 0.3rem #aaa;
+  height: 85rpx;
+  width: 85rpx;
+}
+.head_group_introduce text{
+  font-weight: 600;
+  color: rgb(153, 52, 61);
+  padding-left: 5rpx;
+  letter-spacing: 2rpx;
+}
+
+.body{
+  width: 95%;
+  margin: 20rpx 5rpx 20rpx 110rpx;
+}
+
+/* 棋盘 */
+.body_group,
+.body_group_0,
+.body_group_1{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.body_group_0,
+.body_group_1{
+  margin-bottom: 40rpx;
+  margin-left: 5rpx;
+}
+.body_group_0_title{
+  text-indent: 0px !important;
+  letter-spacing: 2rpx;
+  font-size: 18px !important;
+}
+.body_group_0 image,
+.body_group_1 image{
+  width: 100%;
+}
+.body_group_0 text,
+.body_group_1 text{
+  width: 95%;
+  line-height: 50rpx;
+  font-size: 17px;
+  text-indent:34px;
+}
+
+/* 将军 */
+.body_group_1{
+  margin-bottom: 20rpx;
+}
+.body_group_1_title{
+  text-indent: 0px !important;
+  font-size: 20px !important;
+  font-weight: 600;
+  letter-spacing: 3rpx;
+  padding: 40rpx 0 10rpx 0;
+}

@@ -1,0 +1,26 @@
+<!--pages/page_admin/manage/changeType/changeType.wxml-->
+<view class="all">
+
+  <radio-group bindchange="type">
+    <radio value="secretary">干事</radio>
+    <radio value="vip">会员</radio>
+    <radio value="member" checked="true">普通成员</radio>
+  </radio-group>
+
+  <view wx:for="{{array}}" wx:key="index" class="msg">
+    <view class="group">
+      <label>{{index+1}}:</label>
+      <input placeholder="输入学号：" id="{{index}}" bindinput="input" value="{{array[index]}}" maxlength="11"></input>
+    </view>
+  
+  </view>
+
+  <view class="btn">
+    <button bindtap="cut" id="cut">减少空栏</button>
+    <button bindtap="add" id="add">增加空栏</button>
+  </view>
+
+  <button bindtap="submit" id="submit">批量修改</button>
+
+
+</view>

@@ -1,0 +1,82 @@
+<!--pages/page_admin/manage/changeMsg/changeMsg.wxml-->
+
+<view class="all"> 
+
+  <view class="search">
+      <input placeholder="输入学号" bindinput="code" type="number" auto-focus="true" maxlength="11"></input>
+      <button bindtap="search" size="mini">搜索</button>
+  </view>
+
+  <view wx:if="{{find}}" class="msgform">
+
+    <!-- 学号栏 -->
+      <view class="number">
+        <label>学 号：</label>
+        <text>{{number}}</text>
+        <button size="mini" id="Cnumber" bindtap="click">{{Cnumber[1]}}</button>
+      </view>
+      <!-- 修改学号 -->
+      <view wx:if="{{Cnumber[0]}}" class="Cmsg">
+          <input placeholder="新学号：" bindinput="setnew" id="Cnumber" maxlength="11"></input>
+          <button size="mini" id="Snumber" bindtap="submit">提交</button>
+      </view>
+
+    <!-- 姓名栏 -->
+      <view class="name">
+        <label>姓 名：</label>
+        <text>{{name}}</text>
+        <button size="mini" id="Cname" bindtap="click">{{Cname[1]}}</button>
+      </view>
+      <!-- 修改姓名 -->
+      <view wx:if="{{Cname[0]}}" class="Cmsg">
+          <input placeholder="新姓名：" bindinput="setnew" id="Cname"></input>
+          <button size="mini" id="Sname" bindtap="submit">提交</button>
+      </view>
+
+    <!-- 密码栏 -->
+      <view class="password">
+        <label>密 码：</label>
+        <text>{{password}}</text>
+        <button size="mini" bindtap="reset">重置</button>
+      </view>
+
+    <!-- 类型栏 -->
+      <view class="radio">
+        <text>用户类型：</text>
+        <radio-group bindchange="type">
+            <radio value="admin"     checked="{{type == 'admin'}}"     ><label>管理员</label></radio>
+            <radio value="secretary" checked="{{type == 'secretary'}}" ><label>干事</label></radio>
+            <radio value="vip"       checked="{{type == 'vip'}}"       ><label>会员</label></radio>
+            <radio value="member"    checked="{{type == 'member'}}"    ><label>普通成员</label></radio>
+        </radio-group>
+        <button bindtap="submittype" class="sure">更改用户类型</button>
+      </view>
+
+    <!-- 班级信息栏 -->
+      <view class="pickall">
+        <picker mode="multiSelector" class="pick" bindcolumnchange="instituteColumnChange" value="{{IIndex}}" range="{{institute}}">
+          <view class="pick">
+              <text class="lable">校 区\t</text><text space="emsp">:  </text>
+              <text class="range">{{institute[0][IIndex[0]]}}</text>
+              
+              <text class="lable">\n学 院\t</text><text space="emsp">:  </text>
+              <text class="range">{{institute[1][IIndex[1]]}}</text>
+          </view>
+        </picker>
+
+        <picker mode="multiSelector" class="pick" bindcolumnchange="classnameColumnChange" value="{{CIndex}}" range="{{classname}}">
+          <view class="pick">
+            <text class="lable">专 业\t</text><text space="emsp">:  </text>
+            <text class="range">{{classname[0][CIndex[0]]}}</text>
+
+            <text class="lable">\n班 级\t</text><text space="emsp">:  </text>
+            <text class="range">{{classname[1][CIndex[1]]}} - {{classname[2][CIndex[2]]}}</text>
+          </view>
+        </picker>
+        
+        <button bindtap="classmsg" class="sure">更新班级信息</button>
+      </view>
+    
+  </view>
+	
+</view>

@@ -1,0 +1,70 @@
+<!--pages/page_vip/active/active.wxml-->
+<view class="title">
+	<text>棋 协 活 动 报 名</text>
+</view>
+
+<view class="activeTotal">
+	<form class="activeform" name="activeform" bindsubmit="check_submit">
+
+		<view class="msg">
+			<text>姓 名</text>
+			<input type="text" value="{{name}}" disabled="true" id="disable"></input>
+		</view>
+
+		<view class="msg">
+			<text>电 话</text>
+			<input type="number" placeholder="请输入联系方式" placeholder-class="plaseholder" bindinput="setTO" id="tel" maxlength="11" value="{{tel}}"></input>
+		</view>
+
+		<view class="msg">
+			<text>学 号</text>
+			<input type="number" value="{{number}}" disabled="true" id="disable"></input>
+		</view>
+
+    <text>\n</text>
+
+		<view class="pickall">
+			<picker disabled="true">
+				<view class="pick">
+            <text class="lable">校 区\t</text><text space="emsp">:  </text>
+            <text class="range">{{campus}}</text>
+            
+            <text class="lable">\n学 院\t</text><text space="emsp">:  </text>
+            <text class="range">{{institute}}</text>
+				</view>
+			</picker>
+
+			<picker disabled="true">
+				<view class="pick">
+					<text class="lable">专 业\t</text><text space="emsp">:  </text>
+          <text class="range">{{major}}</text>
+
+					<text class="lable">\n班 级\t</text><text space="emsp">:  </text>
+          <text class="range">{{classname}}</text>
+				</view>
+			</picker>
+		</view>
+
+		<view class="activeList" wx:if="{{isshow}}">
+			<text>\n活动项目:\n</text>
+			<view wx:for='{{activeList}}' wx:key='key' class="active">
+					<view class="Amsg"><label>活动名称：</label> <text>{{activeList[index].activeName}}</text> </view>
+					<view class="Amsg"><label>活动编码：</label> <text>{{activeList[index].activeCode}}</text> </view>
+					<view class="Amsg"><label>活动地点：</label> <text>{{activeList[index].activeArea}}</text> </view>
+					<view class="Amsg"><label>开始时间：</label> <text>{{showtime[index][0]}} 					</text> </view>
+					<view class="Amsg"><label>结束时间：</label> <text>{{showtime[index][1]}}					</text> </view>
+					<view class="Amsg"><label>截止时间：</label> <text style="color:red">{{showtime[index][2]}}</text></view>
+					<button id="{{index}}" bindtap="pick" class="pickButton" style="{{pickBtn[index][1]}}" disabled="{{!activeList[index].state_enter}}">{{pickBtn[index][2]}}</button>
+			</view>
+		</view>
+		<view wx:if="{{!isshow}}" class="tips">当前无可报名的活动！</view>
+
+		<view class="textatea">
+			<input type="text" placeholder="备注栏：" placeholder-class="plaseholder" bindinput="setTO" id="other"></input>
+		</view>
+		<text>\n</text>
+		<button form-type="submit" value="确认报名" class="submit" disabled="{{!isshow}}">确认报名</button>
+
+	</form>
+
+</view>

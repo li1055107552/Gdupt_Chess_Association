@@ -1,0 +1,32 @@
+<!--pages/page_admin/active/QRcode/QRcode.wxml-->
+<view class="all">
+
+  <view class="search">
+    <input placeholder="输入活动编码" bindinput="code"  bindconfirm='confirmHandler' type="number" auto-focus="true"></input>
+    <button bindtap="search" size="mini">搜索</button>
+  </view>
+
+  <view class="show" wx:if="{{show}}">
+
+    <view class="group">
+      <label>活动编码</label>
+      <text>{{activeCode}}</text>
+    </view>
+
+    <view class="group">
+      <label>活动名称</label>
+      <text>{{activeName}}</text>
+    </view>
+
+    <button bindtap="get">确认且获取</button>
+
+    <view class="canvas" wx:if="{{showQR}}">
+      <canvas class='canvas' style="width:{{qrcodeWidth}}px; height:{{qrcodeWidth}}px;" canvas-id='canvas' bindlongtap='save'></canvas>
+      <view class="tips">(长按保存)</view>
+    </view>
+
+    
+  
+  </view>
+
+</view>

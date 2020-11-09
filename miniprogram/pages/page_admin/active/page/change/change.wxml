@@ -1,0 +1,120 @@
+<!--pages/page_admin/active/change/change.wxml-->
+<view class="all">
+
+  <view class="search">
+      <input placeholder="输入活动编码" bindinput="code" type="number" auto-focus="true"></input>
+      <button bindtap="search" size="mini">搜索</button>
+  </view>
+
+  <block wx:if="{{show}}" class="collect">
+  
+    <form bindsubmit="check" class="form">
+      <!-- 信息栏 -->
+      <view class="input">
+        <view class="msg">
+          <text>活 动 名 称</text>
+          <input type="text" placeholder="请输入活动名称" name="activeName" value="{{activeName}}"></input>
+        </view>
+
+        <view class="msg">
+          <text>活 动 编 码</text>
+          <input type="number" value="{{activeCode}}" disabled="true" id="code"></input>
+        </view>  
+
+        <view class="msg">
+          <text>活 动 地 点</text>
+          <input type="text" placeholder="官渡：" name="activeArea" value="{{activeArea1}}"></input>
+        </view>
+        <view class="msg">
+          <text></text>
+          <input type="text" placeholder="西城：" name="activeArea" value="{{activeArea2}}"></input>
+        </view>
+      </view>
+      <!-- 时间栏 -->
+      <view class="time">
+        <!-- 比赛开始时间 -->
+        <view class="raceStart">
+          <text>比赛开始时间：</text>
+          <picker mode="date" value="{{raceStartdate}}" bindchange="timeChange" name="raceStartdate" id="raceStartdate">
+              <text space="nbsp"> {{raceStartdate}} \t</text> 
+          </picker>
+          
+          <picker mode="time" value="{{raceStarttime}}" bindchange="timeChange" name="raceStarttime" id="raceStarttime">
+              <text>{{raceStarttime}}</text>
+          </picker>
+
+        </view>
+        <!-- 比赛结束时间 -->
+        <view class="raceEnd">
+            <text class="lable">比赛结束时间：</text>
+            <picker mode="date" value="{{raceEnddate}}" bindchange="timeChange" name="raceEnddate" id="raceEnddate">
+                <text space="nbsp"> {{raceEnddate}} \t</text>
+            </picker>
+
+            <picker mode="time" value="{{raceEndtime}}" bindchange="timeChange" name="raceEndtime" id="raceEndtime">
+                <text>{{raceEndtime}}</text>
+            </picker>
+        </view>
+        <!-- 报名开始时间 -->
+        <view class="enterStart">
+            <text class="lable">报名开始时间：</text>
+            <picker mode="date" value="{{enterStartdate}}" bindchange="timeChange" name="enterStartdate" id="enterStartdate">
+                <text space="nbsp"> {{enterStartdate}} \t</text>
+            </picker>
+
+            <picker mode="time" value="{{enterStarttime}}" bindchange="timeChange" name="enterStarttime" id="enterStarttime">
+                <text>{{enterStarttime}}</text>
+            </picker>
+        </view>
+        <!-- 报名结束时间 -->
+        <view class="enterEnd">
+            <text class="lable">报名结束时间：</text>
+            <picker mode="date" value="{{enterEnddate}}" bindchange="timeChange" name="enterEnddate" id="enterEnddate">
+                <text space="nbsp"> {{enterEnddate}} \t</text>
+            </picker>
+
+            <picker mode="time" value="{{enterEndtime}}" bindchange="timeChange" name="enterEndtime" id="enterEndtime">
+                <text>{{enterEndtime}}</text>
+            </picker>
+        </view>
+      </view>
+      <!-- 单选栏 -->
+      <view class="radio">
+          <text>当前状态：</text>
+          <radio-group name="state">
+              <radio value="未开始"   checked="{{state == '未开始'}}">  <label>未开始</label>   </radio>
+              <radio value="正在进行" checked="{{state == '正在进行'}}"> <label>正在进行</label> </radio>
+              <radio value="已结束"   checked="{{state == '已结束'}}">  <label>已结束</label>   </radio>
+          </radio-group>
+
+          <text>活动对象：</text>
+          <radio-group name="who">
+              <radio value="secretary" checked="{{who == 'secretary'}}"><label>干事</label>    </radio>
+              <radio value="vip"       checked="{{who == 'vip'}}">      <label>会员</label>    </radio>
+              <radio value="member"    checked="{{who == 'member'}}">   <label>全校师生</label></radio>
+          </radio-group>
+      </view>
+      <!-- 开关栏 -->
+      <view class="switch">
+          <view class="enterstate">
+              <text>是否允许 报名：</text>
+              <label>否</label>
+              <switch name="enterstate" checked="{{state_enter}}"></switch>
+              <label>是</label>
+          </view>
+
+          <view class="clockstate">
+              <text>是否允许 签到：</text>
+              <label>否</label>
+              <switch name="clockstate" checked="{{state_clock}}"></switch>
+              <label>是</label>
+          </view>
+      </view>
+
+      <button form-type="submit">确 认 修 改</button>
+
+    </form>
+
+  </block>
+
+</view>

@@ -1,0 +1,28 @@
+/* pages/page_admin/active/change/change.wxss */
+
+@import "../add/add.wxss";
+
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 40rpx;
+}
+.search button{
+  left: 35rpx;
+}
+.search input{
+  font-size: 0.7rem;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 0.15rem;
+  padding-left: 25px;
+}
+
+.form{
+  border-top: rgb(190,190,190) dashed 1px;
+}
+
+#code{
+  box-shadow: none;
+}

@@ -1,0 +1,165 @@
+/* pages/page_admin/active/add/add.wxss */
+
+.all{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx 0 40rpx 0;
+}
+
+/* 整个表单 以及 填写信息栏 */
+.form,.msg{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 每一栏块的分割线 */
+.input,.time{
+  border-bottom: rgb(190,190,190) dashed 1px;
+  padding-bottom: 40rpx;
+}
+
+/* 填写信息栏 */
+.msg{
+  padding-top: 40rpx;
+}
+.msg text{
+  width: 80px;
+  padding: 10rpx 20rpx;
+  text-align: right;
+  font-size: 15px;
+  flex-grow: 0.3;
+  color: rgb(110, 110, 110);
+  z-index: 1;
+}
+.msg input{
+  font-size: 0.7rem;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 10rpx;
+  padding-left: 25px;
+  width: 45%;
+  z-index: 1;
+}
+
+/* 时间栏 */
+.raceStart,.raceEnd,.enterStart,.enterEnd{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40rpx;
+  padding-bottom: 10rpx;
+  z-index: 1;
+}
+.raceStart text,.raceEnd text,.enterStart text,.enterEnd text{
+  text-align: right;
+  font-size: 15px;
+  z-index: 1;
+}
+picker text{
+  padding-left: 10rpx;
+  z-index: 1;
+}
+
+/* 单选栏 */
+.radio{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 10rpx 40rpx 10rpx;
+  border-bottom: rgb(190,190,190) dashed 1px;
+}
+.radio text{
+  font-size: 16px;
+  padding-top: 20rpx;
+  z-index: 1;
+}
+.radio label{
+  padding-right: 10rpx;
+}
+radio-group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx 20rpx 20rpx;
+  z-index: 1;
+}
+
+/* 开关栏 */
+.switch{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0;
+}
+.enterstate,.clockstate {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20rpx;
+}
+.switch text{
+  text-align: right;
+  z-index: 1;
+}
+.switch label{
+  font-size: 16px;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  z-index: 1;
+}
+
+.form button{
+  background-color:rgb(4,190,2);
+  color: white;
+  z-index: 1;
+}
+  
+
+/* 模板样式 */
+  .zan-dialog{
+    display: flex;
+    justify-content: center;
+  }
+  .zan-dialog__mask {   /* 蒙版 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.10);/*设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4);*/
+    display: none;
+  }
+  .zan-dialog__container {    /* 弹出时 */
+    position: fixed;
+    bottom: 30%;
+    width: 650rpx;      /*弹窗布局宽*/
+    height: 670rpx;     /*弹窗布局高，与下面弹出距离transform有关*/
+    background: rgb(75, 73, 73); /*#f8f8f8*/
+    transform: translateY(350%);/*弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度*/
+    transition: all 0.4s ease;
+    z-index: 2;
+    border-radius: 20rpx;
+    box-shadow: 0px 1px 1px 1px gainsboro;/*弹框的悬浮阴影效果，如不需要可注释该行*/
+  }
+  .zan-dialog--show .zan-dialog__container {  /* 隐藏时 */
+    transform: translateY(0);
+  }
+  .zan-dialog--show .zan-dialog__mask {   /* 点击任意处还原 */
+    display: block;
+  }
+  .tips{    /* 显示的内容 */
+    font-size: 15px;
+    color: whitesmoke;
+    padding: 85rpx;
+    z-index: 10;
+  }
+  .icon{    /* 点击的图标 */
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    height: 20px;
+    width: 20px;
+    z-index: 1;
+  }

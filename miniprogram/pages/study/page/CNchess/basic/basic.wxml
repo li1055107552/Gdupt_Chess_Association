@@ -1,0 +1,121 @@
+<!-- pages/study/page/CNchess/basic/basic.wxml -->
+<template name="content" >
+  <text class="body_group_1_title" wx:if="{{title!=''}}">{{title}}</text>
+  <text wx:if="{{text2!=''}}" style="margin-bottom:5rpx">{{text2}}</text>
+  <image src="{{url}}" style="width:{{winWidth-60}}px" mode="widthFix"></image>
+  <text>{{text}}</text>
+</template>
+
+<view class="all" style="min-height:{{winHeight}}px">
+
+  <view class="head" style="min-height:{{winHeight-40}}px">
+    <view class="head_group" style="{{head[0]?'border-right: rgb(245, 186, 60) solid 2px;':''}}">
+      <view class="head_group_introduce" bindtap="changetop" id="head_1">
+        <text>棋盘</text>
+      </view>
+    </view>
+    
+    <view class="head_group" style="{{head[1]?'border-right: rgb(245, 186, 60) solid 2px;':''}}">
+      <view class="head_group_introduce" bindtap="changetop" id="head_2">
+        <text>吃子</text>
+      </view>
+    </view>
+
+    <view class="head_group" style="{{head[2]?'border-right: rgb(245, 186, 60) solid 2px;':''}}">
+      <view class="head_group_introduce" bindtap="changetop" id="head_3">
+        <text>读谱</text>
+      </view>
+    </view>
+
+    <image wx:for="{{image}}" wx:key="key" src="{{item[0]}}" id="image_{{index}}" bindtap="change" style="{{item[1]?'border-right: rgb(245, 186, 60) solid 2px;':''}}"></image>
+  </view>
+
+  <view class="body" style="width:{{winWidth*2}}rpx">
+    <!-- 棋盘 -->
+    <view class="body_group" wx:if="{{head[0]}}">
+      <!-- 欢迎语 -->
+      <view class="body_group_welcome">
+        <text>欢迎来到象棋的世界！</text>
+        <text>在这里\n您将学习到象棋的基本走法哦~</text>
+      </view>
+      <!-- 内容 -->
+      <view class="body_group_0" wx:for="{{body_group_0}}" wx:key="key">
+        <text class="body_group_0_title">{{item.title}}</text>
+        <image src="{{item.url}}" mode="widthFix"></image>
+        <text>{{item.text}}</text>
+      </view>
+    </view>
+
+    <!-- 吃子 -->
+    <view class="body_group" wx:if="{{head[1]}}">
+    
+    </view>
+
+    <!-- 读谱 -->
+    <view class="body_group" wx:if="{{head[2]}}">
+    
+    </view>
+
+    <!-- 将军 -->
+    <view class="body_group" wx:if="{{image[0][1]}}">
+      <view class="body_group_1" wx:for="{{body_group_jiang}}" wx:key="key">
+        <text class="body_group_1_title" wx:if="{{index < 2}}">{{item.title}}</text>
+        <text wx:if="{{item.text!=''}}" style="margin-bottom:5rpx">{{item.text}}</text>
+        <image src="{{item.url}}" style="width:{{winWidth-60}}px" mode="widthFix"></image>
+        <text>{{item.text2}}</text>
+      </view>
+    </view>
+
+    <!-- 士 -->
+    <view class="body_group" wx:if="{{image[1][1]}}">
+     <view class="body_group_1" wx:for="{{body_group_shi}}" wx:key="key">
+        <text class="body_group_1_title" wx:if="{{index < 2}}">{{item.title}}</text>
+        <text wx:if="{{item.text!=''}}" style="margin-bottom:5rpx">{{item.text}}</text>
+        <image src="{{item.url}}" style="width:{{winWidth-60}}px" mode="widthFix"></image>
+        <text>{{item.text2}}</text>
+      </view>
+    </view>
+
+    <!-- 相 -->
+    <view class="body_group" wx:if="{{image[2][1]}}">
+      <view class="body_group_1" wx:for="{{body_group_xiang}}" wx:key="key">
+        <text class="body_group_1_title" wx:if="{{item.title!='' && index < 3}}">{{item.title}}</text>
+        <text wx:if="{{item.text!=''}}" style="margin-bottom:5rpx">{{item.text}}</text>
+        <image src="{{item.url}}" style="width:{{winWidth-60}}px" mode="widthFix"></image>
+        <text>{{item.text2}}</text>
+      </view>
+    </view>
+
+    <!-- 車 -->
+    <view class="body_group" wx:if="{{image[3][1]}}">
+      <view class="body_group_1" wx:for="{{body_group_ju}}" wx:key="key">
+        <text class="body_group_1_title" wx:if="{{index < 2}}">{{item.title}}</text>
+        <text wx:if="{{item.text!=''}}" style="margin-bottom:5rpx">{{item.text}}</text>
+        <image src="{{item.url}}" style="width:{{winWidth-60}}px" mode="widthFix"></image>
+        <text>{{item.text2}}</text>
+      </view>
+    </view>
+
+    <!-- 马 -->
+    <view class="body_group" wx:if="{{image[4][1]}}">
+      <view class="body_group_1" wx:for="{{body_group_ma}}" wx:key="key">
+        <text class="body_group_1_title" wx:if="{{item.title!='' && index < 3}}">{{item.title}}</text>
+        <text wx:if="{{item.text!=''}}" style="margin-bottom:5rpx">{{item.text}}</text>
+        <image src="{{item.url}}" style="width:{{winWidth-60}}px" mode="widthFix"></image>
+        <text>{{item.text2}}</text>
+      </view>
+    </view>
+
+    <!-- 炮 -->
+    <view class="body_group" wx:if="{{image[5][1]}}">
+
+    </view>
+
+    <!-- 兵 -->
+    <view class="body_group" wx:if="{{image[6][1]}}">
+
+    </view>
+  
+  </view>
+  
+</view>

@@ -1,0 +1,3 @@
+/* pages/page_admin/my/active/active.wxss */
+
+@import "../../../../../style/G_active.wxss";

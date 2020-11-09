@@ -1,0 +1,51 @@
+/* pages/study/study.wxss */
+
+.background{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  min-height: 580px;
+}
+
+.content{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20rpx;
+}
+
+.group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  border: rgb(185, 136, 44) solid 1px;
+  border-radius: 30rpx;
+  box-shadow: -10px 12px 2px 2px #757575;
+  padding: 5rpx 20rpx;
+  margin-top: 60rpx;
+}
+.group image{
+  width: 80px;
+  height: 80px;
+}
+.group_text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  margin-left: 20rpx;
+  line-height: 25px;
+}
+.group_text_CN{
+  font-size: 18px;
+  letter-spacing: 5rpx;
+  font-weight: 500;
+}
+.group_text_EN{
+  font-size: 15px;
+  color: rgba(50, 50, 50, 0.7);
+}

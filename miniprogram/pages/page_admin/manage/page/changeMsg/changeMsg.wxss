@@ -1,0 +1,155 @@
+/* pages/page_admin/manage/changeMsg/changeMsg.wxss */
+
+@import "../../../../news/news.wxss";
+
+.all{
+  padding: 20rpx;
+}
+
+.type,.nickname,.name,.number,.password,.campus,.institute,.major,.classname,.tel,.qq,.time{
+  display: flex;
+  align-items: center;
+  line-height: 80rpx;
+}
+.type{
+  margin-top: -60rpx;
+}
+
+/*修改按钮*/
+#Cnickname,#Cpassword,#Ctel,#Cqq{
+  position: absolute;
+  right: 35rpx;
+}
+#show{
+  position: absolute;
+  right: 180rpx;
+}
+
+.Cmsg{
+  display: flex;
+  align-content: center;
+  justify-content: center;  
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 30rpx 20rpx 30rpx 0;
+  margin: 10rpx 70rpx 40rpx 70rpx;
+}
+
+.Cmsg input{
+  align-self: flex-end;
+  font-size: 0.7rem;
+  color: black;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 0.3rem;
+  padding-left: 25px;
+}
+
+#Snickname,#Spassword,#Stel,#Sqq{
+  position: relative;
+  margin: 0;
+  left: 35rpx;
+}
+
+
+
+.all{
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+}
+
+/* 搜索栏 */
+.search{
+  display: flex;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  padding-bottom: 40rpx;
+}
+.search button{
+  left: 35rpx;
+}
+.search input{
+  font-size: 0.7rem;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 0.15rem;
+  padding-left: 25px;
+}
+
+/* 搜索结果显示栏 */
+.msgform{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20rpx;
+}
+
+/* 修改栏 */
+.Cmsg{
+  padding: 30rpx 20rpx;
+  margin: 10rpx 60rpx 40rpx 60rpx;
+}
+
+/*学号栏*/
+.number{
+  display: flex;
+  padding-bottom: 20rpx;
+}
+
+/* 密码+名字栏 */
+.name,.password{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30rpx;
+}
+.number label,.name label,.password label{
+  width: 150rpx;
+}
+.number text,.name text,.password text{
+  text-align: left;
+  width: 300rpx;
+}
+.name{
+  border-top: rgb(190, 190, 190) dashed 1px;
+}
+.password{
+  padding-bottom: 20rpx;
+}
+
+/* 单选栏 */
+.radio{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 10rpx 50rpx 10rpx;
+  border-top: rgb(190, 190, 190) dashed 1px;
+}
+.radio text{
+  font-size: 16px;
+  padding-top: 20rpx;
+}
+.radio label{
+  font-size: 15px;
+  padding-right: 10rpx;
+}
+radio-group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20rpx;
+}
+
+/* 班级信息 */
+.pickall{
+  padding: 30rpx 50rpx 20rpx 50rpx;
+  border: rgb(190, 190, 190) dashed 1px;
+}
+
+/* 两个按钮 */
+.sure{
+  font-size: 17px;
+  letter-spacing: 2rpx;
+  /* background-color: rgb(60, 190, 60);
+  color: white; */
+}

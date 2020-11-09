@@ -1,0 +1,17 @@
+<!--pages/study/CNchess/CNchess.wxml-->
+
+<image src="{{background_url}}" id="background" mode="heightFix"></image>
+
+<view class="all">
+
+  <view class="group" bindtap="click" id="basic">
+    <image src="{{url}}basic.png"></image>
+    <text>新手入门</text>
+  </view>
+
+  <view class="group" bindtap="click" id="advance">
+    <image src="{{url}}advance.png"></image>
+    <text>进阶</text>
+  </view>
+
+</view>

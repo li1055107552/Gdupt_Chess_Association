@@ -1,0 +1,42 @@
+/* pages/study/CNchess/CNchess.wxss */
+
+#background{
+  position: absolute;
+  opacity: 0.4;
+  width: 100%;
+  height: 100%;
+}
+
+.all{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100rpx;
+}
+
+.group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx 0rpx 30rpx 100rpx;
+  width: 100%;
+  border:rgb(185, 136, 44) solid 1px;
+  box-shadow: 0px 8px 6px 0px #757575;
+  background-color: rgba(180, 110, 70,0.6);
+  margin-bottom: 50rpx;
+}
+
+.group image{
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.group text{
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 5rpx;
+  margin-left: 50rpx;
+  flex-grow: 1;
+}

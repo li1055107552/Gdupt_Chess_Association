@@ -1,0 +1,67 @@
+/* pages/page_admin/manage/changeType/changeType.wxss */
+
+.all,.msg{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+}
+
+/* 选择用户类型 */
+radio-group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx 40rpx 20rpx;
+  width: 80%;
+}
+
+/* 增添条数 */
+.msg{
+  padding-top: 20rpx;
+}
+.group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.group label{
+  color: #aaa;
+  padding-right: 40rpx;
+}
+.group input{
+  align-self: flex-end;
+  font-size: 0.7rem;
+  color: black;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 0.3rem;
+  padding-left: 25px;
+}
+
+
+/* 按钮 */
+.btn{
+  display: flex;
+  width: 60%;
+}
+#add{
+  color: aliceblue;
+  background-color: rgb(90, 190, 90);
+  font-size: 15px;
+}
+#cut{
+  color: aliceblue;
+  background-color: rgb(230, 75, 75);
+  font-size: 15px;
+}
+
+#submit{
+  position: relative;
+  top: 80rpx;
+  width: 70%;
+  color: aliceblue;
+  background-color: rgb(90, 190, 90);
+}

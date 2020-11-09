@@ -1,0 +1,66 @@
+/* pages/page_admin/active/QRcode/QRcode.wxss */
+
+.all{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20rpx;
+}
+
+.search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 40rpx;
+}
+.search button{
+  left: 35rpx;
+  color: black;
+}
+.search input{
+  font-size: 0.7rem;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 0.15rem;
+  padding-left: 25px;
+}
+
+.show{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+}
+.group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 70%;
+}
+.group label{
+  padding-right: 30rpx;
+}
+
+.show button{
+  height:auto;
+  width:70%;
+  outline: none;
+  padding:0;
+  background-color:rgb(124, 205, 125);
+  color: white;
+  border: none;
+  text-align: center;
+  line-height:auto;
+  margin-top:1.5rem;
+  margin-bottom: 50px;
+}
+
+.canvas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20rpx;
+}
+.tips{
+  font-size: small;
+}
