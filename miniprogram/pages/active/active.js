@@ -1,298 +1,393 @@
-// miniprogram/pages/active/active.js
-var app = getApp()
+// pages/page_vip/active/active.js
 var util = require('../../utils/util.js')
+var classlist = require('../../utils/classlist.js')
 Page({
 
+  /* 页面的初始数据 */
   data: {
-    name:"",
-    tel:"",
-    number:"",
-    school:"",
-    classname:"",
-    activeType:"",
-    formId:"",
+    name: "",     //姓名
+    tel: "",      //电话
+    number: "",   //学号
+    other:"",     //备注
+
+    isshow:false,   //是否展示活动列表（是否有活动）
+    activeList:[],  //报名活动列表
+
+    multiArray:[],
+    institute:[],   //校区[0] + 学院[1]
+    classname:[],   //专业[0] + 届数[1] + 班级[2]
+    IIndex:[0,0],   //校区[0] + 学院[1]
+    CIndex:[0,0,0]  //专业[0] + 届数[1] + 班级[2]
+    //pickBtn = []    是否选中[0] + 样式[1] + 显示内容[2]
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
-  /* 入口检测 */
-  onLoad:function(){
-    const st = wx.cloud.database()
-    st.collection("admin").where({ _id: "active-state"}).get
+  onLoad: function () {
+    console.log("当前时间戳:" + new Date().getTime())
+    var that = this
+    /* 入口检测 */
+    {
+      const st = wx.cloud.database()
+      st.collection("admin").doc('active').get
       ({
         success: function (res) {
-          console.log(res.data[0].state)
-          if (res.data[0].state == false)
-           { wx.showModal
-              ({
-                content: '报名入口关闭',
-                showCancel: false,
-              success(res){
-                if(res.confirm)
-                  wx.navigateTo({
-                    url: '../index/index',
+          if (res.data.state_page == false) {
+            wx.showModal({
+              content: '报名入口关闭',
+              showCancel: false,
+              success(res) {
+                if (res.confirm)
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                else
+                  wx.navigateBack({
+                    delta: 1
                   })
               }
-              })
-           }
-        }
-      })
-    
-    /* 获取文件存放位置 */  
-    const fl = wx.cloud.database()
-    fl.collection("admin").where({ _id: "active-enter" }).get
-      ({
-        success: function (res) {
-          console.log(res.data[0].type)
-            app.globalData.file_enter = res.data[0].type
+            })
           }
         }
-      )
+      })
+    }
 
-    /* 获取时间 */
-    var TIME = util.formatTime(new Date());
-    this.setData({
-      time:TIME
-    })
-    console.log("onload:"+this.data.time)
-  },
-    
-  /* 绑定事件 */
-    name: function(e) {
-      this.setData(
-        {
-          name: e.detail.value
-        })
-      console.log("姓名:" + this.data.name)
-    },
-    tel: function (e) {
-      this.setData(
-        {
-          tel: e.detail.value
-        })
-      console.log("电话:" + this.data.tel)
-    },
-    number: function (e) {
-      this.setData(
-        {
-          number: e.detail.value
-        })
-      console.log("学号:" + this.data.number)
-    },
-    school: function (e) {
-      this.setData(
-        {
-          school: e.detail.value
-        })
-      console.log("学院:" + this.data.school)
-    },
-    classname: function (e) {
-      this.setData(
-        {
-          classname: e.detail.value
-        })
-      console.log("班级:" + this.data.classname)
-    },
-    other: function (e) {
-      this.setData(
-        {
-          other: e.detail.value
-        })
-      console.log("其他:" + this.data.classname)
-    },
-
-    checkboxChange: function (e) {
+    /* 获取班级列表 */
+    {
       this.setData({
-        checkbox: e.detail.value
+        multiArray: classlist.getmultiArray()
+      }) 
+      this.setData({
+        institute:[
+          this.data.multiArray[0],
+          this.data.multiArray[1]
+        ],
+        classname:[
+          this.data.multiArray[2],
+          this.data.multiArray[3],
+          this.data.multiArray[4]
+        ]
       })
-      console.log('checkbox发生change事件,携带value值为：', e.detail.value)
-    },
+    }
 
-    /* 校验目标 */
-    check_number: function (e) {
-      const bd = wx.cloud.database()
-      bd.collection("active").where({ number: this.data.number }).get
-        ({
-          success: function (res) {
-            console.log(res.data[0].number)
-            if (res.data[0].number != null)
-              wx.showModal
-                ({
-                  content: '学号已被登记',
-                  showCancel: false,
-                })
+    /* 获取活动列表 */
+    {
+      wx.cloud.callFunction({
+        name:'activeList',
+        data:{
+          type:'member'
+        },
+        success:function(res){
+          if(res.result.data.length > 0){
+            that.setData({
+              activeList:res.result.data,
+              isshow:true
+            })
+            that.showtime()
+          } else{
+            that.tips("当前无活动可报名参加！")
           }
-        })
+          
+        },
+        fail(res){
+          console.log(res)
+        },
+
+      })
+
+    }
+
+  },
+
+    /* 设定显示时间 按钮 */
+    showtime(e){
+      var list = this.data.activeList
+      var showtime = []
+      var pickBtn = []      //是否选中[0] 样式[1] 内容[2] 
+      for(var i=0;i<list.length;i++){
+        var timeS = list[i].raceStart
+        var timeE = list[i].raceEnd
+        var timeEE = list[i].enterEnd
+        timeS = util.formatTime(new Date(timeS))
+        timeE = util.formatTime(new Date(timeE))
+        timeEE = util.formatTime(new Date(timeEE))
+        timeS = timeS.slice(0,timeS.length-3)
+        timeE = timeE.slice(0,timeE.length-3)
+        timeEE = timeEE.slice(0,timeEE.length-3)
+        showtime.push([timeS,timeE,timeEE])
+        
+        var content = "预选报名";
+        if(!list[i].state_enter){
+          content = "尚未能报名"
+        }
+        pickBtn.push([false,"color:black;background-color:gary",content])
+      }
+      this.setData({
+        showtime:showtime,
+        pickBtn:pickBtn
+      })
     },
 
+    /* 填写信息 */
+    setNTN:function(e){
+      this.setData({
+        [e.target.id]:e.detail.value
+      })
+    },
+
+    /* 校区 + 学院 改变下标 */
+    instituteColumnChange:function(e){
+      var changeValue = classlist.instituteColumnChange(this.data.IIndex[0],e.detail.column,e.detail.value)  //当前的下标+列数+值
+      this.setData({
+        institute:changeValue.IArray,
+        classname:changeValue.CArray,
+        IIndex:changeValue.IIndex,
+        CIndex:[0,0,0]
+      })
+    },
+    /* 专业 + 届数 + 班级 改变下标 */
+    classnameColumnChange:function(e){
+      var data = this.data.CIndex
+      data[e.detail.column] = e.detail.value
+      this.setData({
+        CIndex:data
+      })
+    },
+
+    /* 预选报名 */
+    pick(e){
+      var pickBtn = this.data.pickBtn
+      if(pickBtn[e.target.id][0]){
+        pickBtn[e.target.id][0] = false
+        pickBtn[e.target.id][1] = "color:black;background-color:gary"
+      }
+      else{
+        pickBtn[e.target.id][0] = true
+        pickBtn[e.target.id][1] = "color:white;background-color:rgb(60,200,60)"
+      }
+      this.setData({
+        pickBtn:pickBtn
+      })
+    },
+
+    /* 表单提交 + 本地校验 */
     check_submit: function (e) {
 
-      if (this.check_number());
+      var mobile = /^1[3456789]\d{9}$/;
+      var isMobile = mobile.exec(this.data.tel)
+      var pickBtn = this.data.pickBtn
+
+      this.loading('校验中......')
+
       if (this.data.name == "") 
-      {
-          wx.showToast({
-            title: '请填写姓名',
-            icon: 'none',
-          })
-          return false;
-      }
-
-      if (this.data.tel == "") 
-      {
-          wx.showToast({
-            title: '请填写联系方式',
-            icon: 'none',
-          })
-          return false;
-      }
-
-      if (this.data.tel.length != 11) {
-        wx.showToast({
-          title: '请正确填写电话',
-          icon: 'none',
-        })
-        return false;
-      }
-
-      if (this.data.number == "") 
-      {
-          wx.showToast({
-            title: '请填写学号',
-            icon: 'none',
-          })
-          return false;
-      }
-
-      if (this.data.number.length != 11) 
-      {
-          wx.showToast({
-            title: '请正确填写学号',
-            icon: 'none',
-          })
-          return false;
-      }
-
-      if (this.data.school == "") 
-      {
-          wx.showToast({
-            title: '请填写学院',
-            icon: 'none',
-          })
-          return false;
-      }
-
-      if (this.data.classname == "") 
-      {
-          wx.showToast({
-            title: '请填写班级',
-            icon: 'none',
-          })
-          return false;
+        this.tips('请填写姓名')
+      else if (this.data.tel == "") 
+        this.tips('请填写联系方式')
+      else if (this.data.tel.length != 11)
+        this.tips('请正确填写电话')      
+      else if (!isMobile)
+        this.tips('请正确填写电话')
+      else if (this.data.number == "")
+        this.tips('请填写学号')
+      else if (this.data.number.length != 11) 
+        this.tips('请正确填写学号')
+      else {
+        for(var i=0;i<pickBtn.length;i++){
+          if(pickBtn[i][0]){
+            this.check_number(this.data.activeList[i])
+          }
+          else if(i >= pickBtn.length -1 ){
+            this.tips('暂无报名项')     //取消loading...
+          }
         }
-
-      if (this.data.checkbox == "other" && this.data.other == null) 
-      {
-          wx.showModal({
-            title:'提示',
-            content:'请备注“其他”',
-            icon: 'none',
-            showCancel: false,
-          })
-          return false;
-        }
-
-      if (this.data.checkbox == null) 
-      {
-          wx.showToast({
-            title: '请选择活动',
-            icon: 'none',
-          })
-          return false;
       }
-        
-      else
-      {
-        console.log(this.data.checkbox[0] + " " + this.data.checkbox[1] + " " + this.data.checkbox[2])
-          setTimeout(this.onAdd,500)
-          return true;
-      }
-      
+
     },
 
-  onAdd: function () {
-    const db = wx.cloud.database()
-    db.collection(app.globalData.file_enter).add({
-      data: {
-        name: this.data.name,
-        tel: this.data.tel,
-        number: this.data.number,
-        school: this.data.school,
-        classname: this.data.classname,
-        activeType: this.data.checkbox,
-        time:this.data.time,
+    /* 校验目标是否已报名 */
+    check_number: function (e) {
+      var that = this
+      this.loading('是否已报名......')
+
+      // 校验是否已报名
+      wx.cloud.callFunction({
+        name:'checkMsg',
+        data:{
+          type:'number',
+          msg:Number(that.data.number),
+          collectName:'A' + e.activeCode
+        },
+        success(res){
+          if(res.result == 0){
+            that.check_user(e)
+          }
+          else{
+            wx.hideLoading()
+            wx.showModal({
+              title:'报名失败',
+              content:e.activeName + " 已报名，请勿重复报名",
+              showCancel:false,
+              success (res) {
+                if (res.confirm) {
+                  wx.navigateBack({
+                    delta:2
+                  })
+                } else{
+                  wx.navigateBack({
+                    delta:2
+                  })
+                }
+              }
+            })
+          }
+        }
+      })
+
+    },
+
+    /* 检查用户状态 */
+    check_user:function(e){
+      this.loading('检查用户状态......')
+      var that = this
+      wx.cloud.callFunction({
+        name:'checkMsg',
+        data:{
+          type:'number',
+          msg:Number(that.data.number),
+          collectName:'member'
+        },
+        success(res){
+          if(res.result == 0){
+            that.newMember(e)
+          }
+          else{
+            that.onAdd(e)
+          }
+        }
+      })
+    },
+
+  newMember(e){
+    this.loading('注册新用户......')
+    var that = this
+    wx.cloud.callFunction({
+      name:'newMember',
+      data:{
+        nickname: that.data.name,
+        name:     that.data.name,
+        number:   Number(that.data.number),
+        tel:      Number(that.data.tel),
+        campus:   that.data.institute[0][that.data.IIndex[0]],      //校区
+        institute:that.data.institute[1][that.data.IIndex[1]],      //学院
+        major:    that.data.classname[0][that.data.CIndex[0]],      //专业
+        classname:that.data.classname[1][that.data.CIndex[1]] + '-' + that.data.classname[2][that.data.CIndex[2]],   //班级
+        password:that.data.number,
+        type:'member',
+        time:util.formatTime(new Date())
       },
-      success: res => {
-        // 在返回结果中会包含新创建的记录的 _id
-        this.setData({
-          counterId: res._id,
-          count: 1,
+      success(res){
+        that.onAdd(e)
+      }
+    })
+  },
+
+  onAdd(e) {
+    this.loading('报名中......')
+    var that = this
+    wx.cloud.callFunction({
+      name: 'activeEnter',
+      data: {
+        activeCode: e.activeCode,             //活动编码（集合名称）
+        activeName: e.activeName,             //活动名称
+        name:       that.data.name,           //姓名
+        tel:        Number(that.data.tel),    //电话
+        number:     Number(that.data.number), //学号
+        campus:     that.data.institute[0][that.data.IIndex[0]],  //校区
+        institute:  that.data.institute[1][that.data.IIndex[1]],  //学院
+        major:      that.data.classname[0][that.data.CIndex[0]],  //专业
+        classname:  that.data.classname[1][that.data.CIndex[1]] + '-' + that.data.classname[2][that.data.CIndex[2]],  //班级
+        remark:     that.data.other,          //备注
+        type: 'member',                       //用户类型
+        time: util.formatTime(new Date()),    //报名时间
+        code: util.getCode(4),                //验证码
+      }, 
+      success: function (res) {
+        wx.hideLoading()
+        wx.showModal({
+          title:'温馨提示',
+          content:e.activeName + "报名成功",
+          showCancel:false,
+          success(res){
+            if(res.confirm){
+              wx.navigateBack({
+                delta:2
+              })
+            } else{
+              wx.navigateBack({
+                delta:2
+              })
+            }
+          }
         })
-        wx.showToast({
-          title: '报名成功',
-        })
-        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-        /* 成功后跳转 */
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '../index/index',
-          })
-        }, 1600)
+        that.sendMsg(e)
+      }, 
+      fail: function (res) {
+        console.log(res)
+        that.tips('报名失败')
       }
     })
   },
   
+  tips(e){
+    wx.showToast({
+      title: e,
+      icon: 'none',
+    })
+  },
+  loading(e){
+    wx.showLoading({
+      title: e,
+    })
+  },
+
   /* 模版信息 */
-  submitTemplateMessageForm:function(e) {
-        if(this.check_submit() == true){
-        wx.cloud.callFunction({
-          name: 'openapi',
-          data: {
-            action: 'sendTemplateMessage',
-            formId: e.detail.formId,
-            name:this.data.name,
-            number:this.data.number,
-            school:this.data.school,
-            classname:this.data.classname,
-            tel:this.data.tel,
-            active: this.data.checkbox[0] + " " + this.data.checkbox[1] ,
-            time:this.data.time
-          },
-          success: res => {
-            console.warn('[云函数] [openapi] templateMessage.send 调用成功：', res)
-            wx.showModal({
-              title: '报名成功',
-              content: '请返回微信主界面查看',
-              showCancel: false,
-            })
-            wx.showToast({
-              title: '报名成功，请返回微信主界面查看',
-            })
-          },
-          fail: err => {
-            wx.showToast({
-              icon: 'none',
-              title: '报名失败-云',
-            })
-            console.error('[云函数] [openapi] templateMessage.send 调用失败：', err)
-          }
-        })
-      }
+  sendMsg(e) {
+    console.log(e)
+    // wx.cloud.callFunction({
+    //   name: 'openapi',
+    //   data: {
+    //     action: 'sendTemplateMessage',
+    //     formId: this.data.formId,
+    //     name: this.data.name,
+    //     number: this.data.number,
+    //     school: this.data.school,
+    //     classname: this.data.classname,
+    //     tel: this.data.tel,
+    //     active: this.data.activeType,
+    //     time: this.data.time
+    //   },
+    //   success: res => {
+    //     console.warn('[云函数] [openapi] templateMessage.send 调用成功：', res)
+    //     wx.showModal({
+    //       title: '报名成功',
+    //       content: '请返回微信主界面查看',
+    //       showCancel: false,
+    //       success: function (res) {
+    //         if (res.confirm)
+    //             /* 成功后跳转 */
+    //             wx.navigateTo({
+    //               url: '../index/index',
+    //             })
+    //       }
+    //     })
+    //   }
+    // })
+  },
+
+  onShareAppMessage:function(){},
+
+  /*生命周期函数--监听页面卸载 */
+  onUnload: function () {
+    wx.navigateBack({
+      delta: 2
+    })
   }
-
 })
-

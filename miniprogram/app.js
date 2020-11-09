@@ -41,11 +41,14 @@ App({
           })
         }
       }
-    })
+      }),
+    
 
     this.globalData = {
-      file_enter:'',
+      userInfo:{}
     }
-
-  },
+    
+    
+  }
 })
+    

@@ -29,7 +29,7 @@ async function sendTemplateMessage(event) {
     touser: OPENID,
     templateId: 'hi06XFZXHrayi3Jr5q1psqwTc93hWWEN_x2_e4nVM30',
     formId: event.formId,
-    page: 'pages/openapi/openapi',
+//    page: 'pages/openapi/openapi',
     data: {
       keyword1: {
         value: event.name,

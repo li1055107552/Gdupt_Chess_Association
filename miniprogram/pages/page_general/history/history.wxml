@@ -1,0 +1,23 @@
+<!--pages/page_general/history/history.wxml-->
+<view class="all">
+
+  <view class="title">
+    <view style="font-size:17px">在棋协举办的众多活动中</view>
+    <view wx:if="{{total != 0}}">您共参加了<text id="total"> {{total}} </text>项那么多呢！</view> 
+    <view wx:else>您一项都没有参加呢 <text>\t o(︶︿︶)o </text></view>
+  </view>
+
+  <view wx:for="{{history}}" wx:key="index" class="list">
+    <view id="dot">
+      <text>{{index+1}}</text>
+    </view>
+
+    <view class="group">
+      <text>{{history[index].time}}\n</text>
+      <text>您参加了“{{history[index].activeName}}” \n</text>
+      <text>状态：{{history[index].state}}</text>
+    </view>
+
+  </view>
+
+</view>

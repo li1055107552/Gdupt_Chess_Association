@@ -1,0 +1,47 @@
+<!--pages/page_vip/changemsg/changemsg.wxml-->
+<view>
+<text>\n</text>
+    <view class="nickname">
+        <text class="text">昵称：{{nickname}}</text>
+    
+        <button bindtap="changeNickname" class="button" size="mini">{{nicknamebutton}}</button>
+
+        <block wx:if="{{changeNickname}}">
+          <form bindsubmit="check_nickname" class="change">
+              <input placeholder="新昵称：" bindinput="nickname"></input>
+              <button form-type="submit" size="mini" class="button2">提交</button>
+          </form>
+        </block>
+
+    </view> 
+<text>\n\n</text>
+    <view class="password">
+        <text class="text">密码：{{password}}</text>
+    
+        <button bindtap="changePassword" class="button" size="mini">{{passwordbutton}}</button>
+        <button bindtap="showPassword" class="button" size="mini">{{showbutton}}</button>
+
+        <block wx:if="{{changePassword}}">
+          <form bindsubmit="update_password" class="change">
+              <input placeholder="新密码：" type="password" bindinput="password"></input>
+              <button form-type="submit" size="mini" class="button2">提交</button>
+          </form>
+        </block>
+
+    </view> 
+<text>\n\n</text>
+    <view class="type">
+      <text class="text">用户类型：{{type}}</text>
+  
+      <button bindtap="changeType" class="button" size="mini">{{typebutton}}</button>
+
+      <block wx:if="{{changeType}}">
+        <form bindsubmit="update_type" class="change">
+            <input placeholder="密钥：" type="text" bindinput="type"></input>
+            <button form-type="submit" size="mini" class="button2">校验</button>
+        </form>
+      </block>
+
+    </view>
+
+</view>

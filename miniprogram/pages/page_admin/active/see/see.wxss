@@ -1,0 +1,38 @@
+/* pages/page_admin/active/see/see.wxss */
+
+.all{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 10rpx 20rpx 10rpx;
+}
+
+.title{
+  display: flex;
+  justify-content: space-around;
+  font-size: 17px;
+  padding-bottom: 20rpx;
+  flex-grow: 2;
+}
+
+.active{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: space-around;
+  height: auto;
+  width: 85%;
+  margin-left: 5%;
+  background-color: white;
+  border: 1px solid gold;
+  padding: 10rpx 10rpx 10rpx 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.area,.code,.name,.time,.state,.who{
+  font-size: 15px
+}
+
+.states{
+  display: flex
+}

@@ -1,254 +1,229 @@
 //pages/news/news.js
+/**
+ * 注册新用户
+ * 
+ */
+var app = getApp()
+var classlist = require('../../utils/classlist.js')
+var util = require('../../utils/util.js')
+var canNickname
+var canNumber
 Page
 ({
-  
+
   data:{
-    username:'',
+    nickname:'',
     name:"",
     number:"",
-    school:"",
-    classname:"",
+
     password:'',
     password2:'',
-    cleanpassword:'',
-    usernameResult:'',
     numberResult:'',
+    long:'',
+
+    multiArray:[],
+    institute:[],   //校区[0] + 学院[1]
+    classname:[],   //专业[0] + 届数[1] + 班级[2]
+    IIndex:[0,0],   //校区[0] + 学院[1]
+    CIndex:[0,0,0]  //专业[0] + 届数[1] + 班级[2]
+  },
+
+  onShareAppMessage: function () {},
+
+  onLoad: function () {
+    /* 获取班级列表 */
+    {
+      this.setData({
+        multiArray: classlist.getmultiArray()
+      }) 
+      this.setData({
+        institute:[
+          this.data.multiArray[0],
+          this.data.multiArray[1]
+        ],
+        classname:[
+          this.data.multiArray[2],
+          this.data.multiArray[3],
+          this.data.multiArray[4]
+        ]
+      })
+    }
+
+    /* 入口检测 */
+    {
+      const st = wx.cloud.database()
+      st.collection("admin").where({ _id: "member" }).get
+      ({
+        success: function (res) {
+          if (res.data[0].state == false) {
+            wx.showModal
+            ({
+              content: '注册入口关闭',
+              showCancel: false,
+              success(res) {
+                if (res.confirm)
+                  wx.redirectTo({
+                    url: '../index/index',
+                  })
+                else
+                  wx.redirectTo({
+                    url: '../index/index',
+                  })
+              }
+            })
+          }
+        }
+      })
+    }
+   
   },
 
   /*绑定事件 */
-  username:function(e){
-      this.setData(
-      {
-      username:e.detail.value
-    })
-    console.log("用户名:"+this.data.username)
-  },
-  name:function(e){
-    this.setData(
-    {
-      name:e.detail.value
-    })
-    console.log("姓名:" + this.data.name)
-  },
-  number:function (e) {
-    this.setData(
-    {
-      number: e.detail.value
-    })
-    console.log("学号:" + this.data.number)
-  },
-  school: function (e) {
-    this.setData(
-      {
-        school: e.detail.value
+    setMsg(e){
+      if(e.target.id == 'number'){
+        this.setData({
+          long:e.detail.value.length
+        })
+      }
+      this.setData({
+        [e.target.id]:e.detail.value
       })
-    console.log("学校:" + this.data.school)
-  },
-  classname: function (e) {
-    this.setData(
-      {
-        classname: e.detail.value
+    },
+
+    /* 校区 + 学院 改变下标 */
+    instituteColumnChange:function(e){
+      var changeValue = classlist.instituteColumnChange(this.data.IIndex[0],e.detail.column,e.detail.value)  //当前的下标+列数+值
+      this.setData({
+        institute:changeValue.IArray,
+        classname:changeValue.CArray,
+        IIndex:changeValue.IIndex,
+        CIndex:[0,0,0]
       })
-    console.log("班级:" + this.data.classname)
-  },
-  password: function (e) {
-    this.setData(
-      {
-        password: e.detail.value
+    },
+
+    /* 专业 + 届数 + 班级 改变下标 */
+    classnameColumnChange:function(e){
+      var data = this.data.CIndex
+      data[e.detail.column] = e.detail.value
+      this.setData({
+        CIndex:data
       })
-    console.log("密码:" + this.data.password)
-  },
-  password2: function (e) {
-    this.setData(
-      {
-        password2: e.detail.value
-      })
-    console.log("确认密码:" + this.data.password2)
-  },        
+
+    },
 
   /*提交检测 */
-
-  check_username:function(e)
-  {
-    const db = wx.cloud.database()
-    db.collection("test").where({username:this.data.username}).get
-    ({
-      success:function(res)
-      {
-        console.log(res.data.length)
-        if(res.data.length != 0)
-        {
-          wx.showModal({
-            content: '用户名已存在',
-            showCancel:false,
-          })
-          this.usernameResult()
-          
-        }
-      },
-    })
-  },
-
-  usernameResult:function(){
-    this.setData({
-      usernameResult: false
-    })
-  },
-
-  check_number:function(e){
-    const bd = wx.cloud.database()
-    bd.collection("test").where({ number: this.data.number }).get
-      ({
-        success: function (res) 
-        {
-          console.log(res.data.length)
-          if(res.data.length != 0)
-          {
-            wx.showModal
-          ({
-              content: '学号已被注册',
-              showCancel: false,
-          })
-            return false;
-          }
-        }
-      })
-  },
-
   check_submit:function(e)
   {
-//    console.log(this.check_username())
-      if (this.check_username());
-      else if (this.check_number());
-      else
-      {
-      if(this.data.username=="")
-      {
-        wx.showToast({
-          title: '请先设置用户名',
-          icon:'none',
-        })
-        return false;
-      }
+      if(this.data.nickname=="")
+        this.tips('请先设置昵称');
+
+      else if (this.data.name == "")
+        this.tips('请填写姓名');
+
+      else if (this.data.number == "") 
+        this.tips('请填写学号');
+
+      else if (this.data.long != 11)
+        this.tips('请正确填写学号');
       
-        
-         if (this.data.name == "") {
-            wx.showToast({
-              title: '请填写姓名',
-              icon: 'none',
-            })
-            return false;
-          }
+      else if(this.data.password == "")
+        this.tips('请先设置密码')
 
-         if (this.data.number == "") {
-            wx.showToast({
-              title: '请填写学号',
-              icon: 'none',
-            })
-            return false;
-          }
+      else if(this.data.password2 == "")
+        this.tips('请确认密码')
 
-          if (this.data.number.length != 11)
-          {
-            wx.showToast({
-              title: '请正确填写学号',
-              icon: 'none',
-            })
-            return (false);
-          }
+      else if (this.data.password != this.data.password2)
+        this.tips('两次密码不相同')
 
-          if (this.data.school == "") {
-            wx.showToast({
-              title: '请填写学院',
-              icon: 'none',
-            })
-            return (false);
-          }
-
-           if (this.data.classname == "") {
-            wx.showToast({
-              title: '请填写班级',
-              icon: 'none',
-            })
-            return (false);
-          }
-          
-          if(this.data.password == "")
-          {
-            wx.showToast({
-              title: '请先设置密码',
-              icon: 'none',
-            })
-            return (false);
-          }
-
-           if(this.data.password2 == "")
-          {
-            wx.showToast({
-              title: '请确认密码',
-              icon: 'none',
-            })
-            return (false);
-          }
-
-           if (this.data.password != this.data.password2)
-          {
-            wx.showToast({
-              title: '两次密码不相同',
-              icon:"none"
-            })
-            return (false);
-          }
-          
-          else
-          {
-            setTimeout(this.onAdd,500)
-            return true;
-          }  
+      else{      
+        wx.showLoading({
+          title: '检测中...',
+        })
+        this.aCheck(this)
       }
   },
 
-  resets:function()
-  {
+  aCheck(e){
+    e.cloudCheck('nickname',e.data.nickname)
+    e.cloudCheck('number',Number(e.data.number))
+    setTimeout(function(){
+      if(canNickname == 0 && canNumber == 0){
+        wx.showLoading({
+          title: '注册中...',
+        })
+        e.onAdd()
+      }
+      else if(canNickname != 0)
+        e.tips("昵称已被注册！")
+      else if(canNumber != 0)
+        e.tips("学号已被登记！")
+    },2000)
+    
+  },
+
+  cloudCheck(type,msg){
+    wx.cloud.callFunction({
+      name: 'checkMsg',
+      data: {
+        type: type,
+        msg: msg,
+        collectName: 'member'
+      },
+      success(res) {
+        if(type == 'nickname'){
+          canNickname = res.result
+        }        
+        else if(type == 'number'){
+          canNumber = res.result
+        } 
+      }
+    })
+  },
+
+  tips(title){
+    wx.showToast({
+      title: title,
+      icon:"none"
+    })
+  },
+  resets(e){    //重置提示
     wx.showToast({
       title: '重置成功!',
     })
   },
 
   onAdd: function () {
-    const db = wx.cloud.database()
-    db.collection('test').add({
-      data: {
-        username: this.data.username,
-        name: this.data.name,
-        number: this.data.number,
-        school: this.data.school,
-        classname: this.data.classname,
-        password: this.data.password,
-        VIP: 'false',
+    var that = this
+    wx.cloud.callFunction({
+      name:'newMember',
+      data:{
+        nickname:that.data.nickname,
+        name:that.data.name,
+        number:Number(that.data.number),
+        tel:null,
+        campus:   that.data.institute[0][that.data.IIndex[0]],      //校区
+        institute:that.data.institute[1][that.data.IIndex[1]],      //学院
+        major:    that.data.classname[0][that.data.CIndex[0]],      //专业
+        classname:that.data.classname[1][that.data.CIndex[1]] + '-' + that.data.classname[2][that.data.CIndex[2]],   //班级
+        password:that.data.password,
+        type:'member',
+        time:util.formatTime(new Date())
       },
-      success: res => {
-        // 在返回结果中会包含新创建的记录的 _id
-        this.setData({
-          counterId: res._id,
-          count:1,
+      success(res){
+        wx.showModal({
+          title: '温馨提示',
+          content: '注册成功，请牢记密码',
+          showCancel:false,
+          success (res) {
+            if (res.confirm) {
+              wx.navigateBack({
+                delta:5,
+              })
+            }
+          }
         })
-        wx.showToast({
-          title: '注册成功',
-        })
-        console.log('[数据库] [新增记录] 成功，记录 _id: ', res._id)
-
-        /* 成功后跳转 */
-        setTimeout(function () {
-          wx.navigateTo({
-            url: '../index/index',
-          })
-        }, 1600)
-
-      },
+      }
     })
-      
-    }
-  },
-
-)
+  }
+  
+})

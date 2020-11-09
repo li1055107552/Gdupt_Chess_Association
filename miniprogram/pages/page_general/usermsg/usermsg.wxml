@@ -1,0 +1,79 @@
+<!--pages/page_general/usermsg/usermsg.wxml-->
+<view class="all">
+
+	<view class="type">
+		<text class="text">\n类型：{{type}}</text>
+	</view>
+
+	<view class="nickname">
+		<text class="text">昵称：{{nickname}}</text>
+		<button size="mini" id="Cnickname" bindtap="click">{{Cnickname[1]}}</button>
+	</view>
+
+	<!-- 修改昵称 -->
+	<view wx:if="{{Cnickname[0]}}" class="Cmsg">
+			<input placeholder="新昵称：" bindinput="setnew" id="Nnickname"></input>
+			<button size="mini" id="Snickname" bindtap="submit">提交</button>
+	</view>
+
+	<view class="name">
+		<text class="text">姓名：{{name}}</text>
+	</view>
+
+	<view class="number">
+		<text class="text">学号：{{number}}</text>
+	</view>
+
+	<view class="password">
+		<text class="text">密码：{{password}}</text>
+		<button size="mini" id="show" bindtap="click">{{show}}</button>
+		<button size="mini" id="Cpassword" bindtap="click">{{Cpassword[1]}}</button>
+	</view>
+
+	<!-- 修改密码 -->
+	<view wx:if="{{Cpassword[0]}}" class="Cmsg">
+			<input placeholder="新密码：" bindinput="setnew" id="Npassword"></input>
+			<button size="mini" id="Spassword" bindtap="submit">提交</button>
+	</view>
+
+	<view class="campus">
+		<text class="text">校区：{{campus}}</text>
+	</view>
+	<view class="institute">
+		<text class="text">学院：{{institute}}</text>
+	</view>
+	<view class="major">
+		<text class="text">专业：{{major}}</text>
+	</view>
+	<view class="classname">
+		<text class="text">班级：{{classname}}</text>
+	</view>
+
+	<view class="tel">
+		<text class="text">电话：{{tel}}</text>
+		<button size="mini" id="Ctel" bindtap="click">{{Ctel[1]}}</button>
+	</view>
+
+	<!-- 修改电话号码 -->
+	<view wx:if="{{Ctel[0]}}" class="Cmsg">
+			<input placeholder="新电话：" bindinput="setnew" id="Ntel" maxlength="11" type="number"></input>
+      <button size="mini" id="Stel" bindtap="submit">提交</button>
+	</view>
+
+	<view class="qq">
+		<text space="nbsp"> QQ :  {{qq}}</text>
+		<button size="mini" id="Cqq" bindtap="click">{{Cqq[1]}}</button>
+	</view>
+
+	<!-- 修改QQ号 -->
+	<view wx:if="{{Cqq[0]}}" class="Cmsg">
+			<input placeholder="新的QQ号：" bindinput="setnew" id="Nqq" type="number"></input>
+			<button size="mini" id="Sqq" bindtap="submit">提交</button>
+	</view>
+
+	<view class="time">
+		<text class="text">注册时间：{{time}}</text>
+	</view>
+
+
+</view>

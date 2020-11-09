@@ -1,0 +1,177 @@
+/* pages/page_admin/active/add/add.wxss */
+
+.form{
+  display: flow-root;
+  padding: 20rpx;
+}
+
+.name,.code,.area,.raceStart,.raceEnd,.enterStart,.enterEnd{
+  display: flex;
+  padding-top: 20rpx;
+  padding-bottom: 10rpx;
+  /* z-index: 1; */
+}
+
+.area,.enterEnd{
+  padding-bottom: 40rpx;
+  z-index: 1;
+}
+
+.name text,.code text,.area text{
+  text-align: right;
+  padding: 10rpx;
+  font-size: 15px;
+  flex-grow: 0.3;
+  width: 80px;
+  color: rgb(110, 110, 110);
+  z-index: 1;
+}
+
+.name input,.code input,.area input{
+  font-size: 0.7rem;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 10rpx;
+  position: relative;
+  left: 3%;
+  margin-right: 20px;
+  padding-left: 25px;
+  width: 45%;
+  z-index: 1;
+}
+
+.raceStart,.raceEnd,.enterStart,.enterEnd{
+  padding-top: 40rpx;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.lable{
+  text-align: right;
+  font-size: 15px;
+  margin-left: 40rpx;
+  z-index: 1;
+}
+
+.lable1{
+  display: flex;
+  text-align: right;
+  font-size: 15px;
+  padding: 30rpx 0rpx 5rpx 40rpx;
+  z-index: 1;
+}
+
+.lable2{
+  text-align: right;
+  font-size: 15px;
+  padding-left: 40rpx;
+  z-index: 1;
+}
+
+.lable3{
+  font-size: 16px;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  z-index: 1;
+}
+
+.picker{
+  padding-left: 10rpx;
+  z-index: 1;
+}
+
+.radio{
+  display: inline-flex;
+  flex-grow: 0.3;
+  padding-left: 30rpx;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.activeState,.who{
+  display: flex;
+  padding: 10rpx 5rpx 20rpx 10rpx;  
+  z-index: 1;
+}
+
+.enterstate,.clockstate,.memberIsCode,.vipIsCode{
+  display: flex;
+  padding-top: 50rpx;
+  z-index: 1;
+}
+
+.switch{
+  margin-top: -10rpx;
+  z-index: 1;
+}
+
+.form button{
+  margin-top: 60rpx;
+  background-color:rgb(4,190,2);
+  color: white;
+  z-index: 1;
+}
+/* 模板样式 */
+  .modalDlg{
+      width: 580rpx;
+      height: 620rpx;
+      position: fixed;
+      top: 50%;
+      left: 0;
+      z-index: 9999;
+      margin: -370rpx 85rpx;
+      background-color: #fff;
+      border-radius: 36rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .zan-dialog__mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.10);/*设置阴影半透明背景如： background: rgba(0, 0, 0, 0.4);*/
+    display: none;
+  }
+
+  .zan-dialog__container {
+    position: fixed;
+    bottom: 30%;
+    width: 650rpx;      /*弹窗布局宽*/
+    height: 650rpx;     /*弹窗布局高，与下面弹出距离transform有关*/
+    margin-left: 50rpx;
+    background: rgb(75, 73, 73); /*#f8f8f8*/
+    transform: translateY(350%);/*弹框弹出距离，与弹框布局高度有关，如300%表示弹起距离为3倍弹窗高度*/
+    transition: all 0.4s ease;
+    z-index: 2;
+    border-radius: 20rpx;
+    box-shadow: 0px 1px 1px 1px gainsboro;/*弹框的悬浮阴影效果，如不需要可注释该行*/
+  }
+
+  .zan-dialog--show .zan-dialog__container {
+    transform: translateY(0);
+  }
+
+  .zan-dialog--show .zan-dialog__mask {
+    display: block;
+  }
+
+  .tips{
+    font-size: 15px;
+    color: whitesmoke;
+    padding: 85rpx;
+    z-index: 10;
+  }
+
+  .icon{
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    height: 20px;
+    width: 20px;
+    z-index: 1;
+  }

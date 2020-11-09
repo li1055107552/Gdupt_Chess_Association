@@ -1,0 +1,23 @@
+<!--pages/page_admin/collect/collect.wxml-->
+
+<view class="title">
+  <view class="title1">{{'总人数：' + total}}</view>
+  <view class="title2">活动编码：19002</view>
+</view>
+
+<view class="search">
+   <view>
+      <form bindsubmit="search" class="search">
+          <input placeholder="输入学号" bindinput="search1" type="number"></input>
+          <button form-type="submit" size="mini" class="button0">搜索</button>
+      </form>
+  </view>
+</view>
+<view><text>\n</text></view>
+
+<view wx:for="{{collect}}" class="collect">
+  <view class="no">{{collect[index].number + "."}}</view>
+  <view class="name">{{collect[index].name}}</view>
+  <view class="code">{{collect[index].code}}</view>
+  <view class="state">{{collect[index].state}}</view>
+</view>

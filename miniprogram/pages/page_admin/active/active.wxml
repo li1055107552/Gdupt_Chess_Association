@@ -1,0 +1,9 @@
+<!--pages/page_admin/active/active.wxml-->
+<view class="all">
+
+  <button class="type" bindtap="activeAdd">活动添加</button>
+  <button class="type" bindtap="activeDel">活动删除</button>
+  <button class="type" bindtap="activeChange">活动修改</button>
+  <button class="type" bindtap="activeSee">活动查看</button>
+
+</view>

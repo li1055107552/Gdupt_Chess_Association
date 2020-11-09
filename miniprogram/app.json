@@ -1,23 +1,75 @@
 {
   "pages": [
+    
+    
     "pages/index/index",
+    
+    "pages/login/login",
     "pages/news/news",
     "pages/active/active",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid"
-  ],
+    
+    "pages/admin/admin", 
+    "test/test",
+  
+  "pages/newcomers/newcomers",
+    "pages/page_member/page_member",
+        "pages/page_member/active/active",
+        "pages/page_member/usermsg/usermsg",
+        "pages/page_member/changemsg/changemsg",
+        "pages/page_member/clockcard/clockcard",
+    "pages/page_vip/page_vip",
+        "pages/page_vip/active/active",
+        "pages/page_vip/usermsg/usermsg",
+        "pages/page_vip/changemsg/changemsg",
+        "pages/page_vip/clockcard/clockcard",
+    "pages/page_general/page_general",
+        "pages/page_general/usermsg/usermsg",
+        "pages/page_general/history/history",
+        "pages/page_general/active/active",
+        "pages/page_general/clock/clock",
+    "pages/page_admin/my/my",
+          "pages/page_admin/my/usermsg/usermsg",
+          "pages/page_admin/my/history/history",
+          "pages/page_admin/my/active/active",
+          "pages/page_admin/my/clockcard/clockcard",
+    "pages/page_admin/active/active",
+          "pages/page_admin/active/add/add",
+          "pages/page_admin/active/del/del",
+          "pages/page_admin/active/change/change",
+          "pages/page_admin/active/see/see",
+    "pages/page_admin/manage/manage",
+          "pages/page_admin/manage/other/other",          
+          "pages/page_admin/manage/collect/collect"
+    ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#ffffff"
   },
+    "tabBar": {
+      "color": "#000000",
+      "selectedColor": "#laad19",
+      "list": [
+        {
+          "pagePath": "pages/page_admin/manage/manage",
+          "iconPath": "img/admin.png",
+          "selectedIconPath": "img/admin.png",
+          "text": "管理"
+        },
+        {
+          "pagePath": "pages/page_admin/active/active",
+          "iconPath": "img/active.png",
+          "selectedIconPath": "img/active.png",
+          "text": "活动"
+        },
+        {
+          "pagePath": "pages/page_admin/my/my",
+          "iconPath": "img/my.png",
+          "selectedIconPath": "img/my.png",
+          "text": "我的"
+        }
+      ]
+    },
   "sitemapLocation": "sitemap.json"
 }

@@ -1,0 +1,30 @@
+<!--pages/page_admin/active/see/see.wxml-->
+<view class="all">
+
+  <view class="title">
+    <text>总活动数:{{total}}</text>
+    <text style="color:blue">未开始:{{become}} </text>
+    <text style="color:green">进行中:{{ing}}  </text>
+    <text style="color:red">已结束:{{before}} </text>
+  </view>
+
+  <block wx:for="{{active}}" wx:key="ActiveCode" class="collect">
+ 
+      <view class="active">
+          <view class="name">活动名：{{active[index].ActiveName}}</view>
+          <view class="code">活动编码：{{active[index].ActiveCode}}</view>
+          <view class="area">活动地点：{{active[index].ActiveArea}}</view>
+          <view class="time">活动时间：{{active[index].RaceStart}}</view>
+          <view class="states">
+              活动状态：
+              <view class="state" wx:if="{{active[index].state == '未开始'}}" style="color:blue">{{active[index].state}}</view>
+              <view class="state" wx:if="{{active[index].state == '进行中'}}" style="color:green">{{active[index].state}}</view>
+              <view class="state" wx:if="{{active[index].state == '已结束'}}" style="color:red">{{active[index].state}}</view>
+          </view>
+
+          <view class="who">活动对象：{{active[index].who}}</view>
+      </view>
+      
+  </block>
+
+</view>

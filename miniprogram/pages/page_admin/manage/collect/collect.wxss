@@ -1,0 +1,49 @@
+/* pages/page_admin/collect/collect.wxss */
+
+.collect,.title{
+  display: flex
+}
+
+.title1{
+  width: 37%
+}
+
+.no{
+  width: 35%;
+  padding-right: 20rpx;
+}
+
+.name{
+  width: 24%
+}
+
+.code{
+  width: 15%
+}
+
+.state{
+  position: absolute;
+  right: 30rpx
+}
+
+.button0{
+  font-size: 15px;
+  left: 550rpx;
+}
+
+.search input{
+  font-size: 0.7rem;
+  color: black;
+  flex-grow: 10rem;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 0.15rem;
+  position: relative;
+  left: 15%;
+  margin-right: 20px;
+  vertical-align: middle;
+  padding-left: 25px;
+  width: 45%;
+  top: 15px;
+  margin-bottom: -4%;
+}

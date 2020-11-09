@@ -1,18 +1,53 @@
 <!--index.wxml-->
 
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击授权登录 </button>
-    <block wx:else>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
+<view class="container"> 
 
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+    <!-- 头像部分 -->
+    <view class="userinfo">
+        <!-- 未授权 -->
+        <image wx:if="{{!canlogin}}" class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image>
+        <!-- 已授权 -->
+        <block wx:else>
+          <image class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image>
+          <text class="userinfo-nickname">{{nickname}}</text>
+        </block>
+    </view>
+
+    <!-- 欢迎大字 -->
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
+
 </view>
 
-      <button bindtap="newsuser" class="button">注册</button>
-      <button bindtap="active" class="button">报名</button>
+  <!-- 授权按钮 -->
+  <view class="getUserInfo">
+    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="getUserInfo">{{getuserinfo}}</button>
+  </view>
+
+  <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
+      
+      <view class="zan-dialog__mask" bindtap="toggleDialog" />     <!--点击任意处隐藏-->
+
+        <!-- 公告 -->
+        <image bindtap="msg" class="icon" src="../../img/tips.png" id="notice"></image>
+        <!-- 简介 -->
+        <view class="jieshao">
+          <button bindtap="msg" class="jieshao" id="introduce">简介</button>
+        </view>
+        <!-- 蒙版显示内容 -->
+        <view class="zan-dialog__container">
+          <view class="tips">    
+              <text space="emsp">{{text}}</text>
+          </view>
+        </view>
+
+      </view>
+      
+  <view class="buttons">
+        <view class="newcomers" wx:if="{{isShow_newcomers}}">
+            <button bindtap="newcomers" class="newcomers" >加 入 我 们</button>
+        </view>
+      <button bindtap="login" class="button1">登录</button>
+      <button bindtap="active" class="button2">报名</button>
+  </view>

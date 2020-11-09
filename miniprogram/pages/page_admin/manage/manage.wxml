@@ -1,0 +1,17 @@
+<!--pages/page_admin/manage/manage.wxml-->
+<view class="all">
+
+    <view class="buttons">
+
+        <view class="other">
+            <button class="other" bindtap="other">其他功能</button>
+        </view>
+
+        <view class="collect">
+            <button class="collect" bindtap="collect">集合查看</button>
+        </view>
+
+    </view>
+
+</view>
+        

@@ -1,0 +1,109 @@
+<!--pages/page_admin/other/other.wxml-->
+<text>\n</text>
+<view>
+
+  <!-- 学号搜索 -->
+      <view>
+          <form bindsubmit="check_search" class="search">
+              <input placeholder="输入学号" bindinput="search" type="number" auto-focus="true"></input>
+              <button form-type="submit" size="mini" class="button0">搜索</button>
+          </form>
+      </view>
+
+      <text>\n</text>
+  <block wx:if="{{show}}">
+      <text>\n</text>
+      <!-- 昵称 -->
+          <view class="nickname">
+              <text class="text" space="nbsp"> 昵称：{{nickname}}</text>
+          </view> 
+
+          <text>\n\n</text>
+      <!-- 学号 -->
+          <view class="number">
+              <text class="text" space="nbsp"> 学号：{{number}}</text>
+          </view> 
+
+          <text>\n\n</text>
+      <!-- 密码 -->
+          <view class="password">
+              <text class="text" space="nbsp"> 密码：{{password}}</text>
+              <button bindtap="request_password" class="button1" size="mini">重置</button>
+          </view> 
+
+          <text>\n\n</text>
+      <!-- 姓名 -->
+          <view class="name">
+              <text class="text" space="nbsp"> 姓名：{{name}}</text>
+          
+              <button bindtap="changeName" class="button1" size="mini">{{namebutton}}</button>
+
+              <block wx:if="{{changeName}}">
+                <form bindsubmit="update_name" class="change">
+                    <input placeholder="姓名：" type="text" bindinput="name"></input>
+                    <button form-type="submit" size="mini" class="button2">提交</button>
+                </form>
+              </block>
+          </view> 
+
+          <text>\n\n</text>
+      <!-- 学院 -->
+          <view class="school">
+              <text class="text" space="nbsp"> 学院：{{school}}</text>
+          
+              <button bindtap="changeSchool" class="button1" size="mini">{{schoolbutton}}</button>
+
+              <block wx:if="{{changeSchool}}">
+                <form bindsubmit="update_school" class="change">
+                    <input placeholder="新学院：" type="text" bindinput="school"></input>
+                    <button form-type="submit" size="mini" class="button2">提交</button>
+                </form>
+              </block>
+          </view>
+
+          <text>\n\n</text>
+      <!-- 班级 -->
+          <view class="classname">
+              <text class="text" space="nbsp"> 班级：{{classname}}</text>
+          
+              <button bindtap="changeClassname" class="button1" size="mini">{{classnamebutton}}</button>
+
+              <block wx:if="{{changeClassname}}">
+                <form bindsubmit="update_classname" class="change">
+                    <input placeholder="新班级：" type="text" bindinput="classname"></input>
+                    <button form-type="submit" size="mini" class="button2">提交</button>
+                </form>
+              </block>
+          </view>
+
+          <text>\n\n</text>
+      <!-- 用户类型 -->
+        <view class="type">
+          <text class="text" space="nbsp"> 用户类型：{{type}}</text>
+
+          <block wx:if="{{type!='admin'}}">
+              <button bindtap="changeType" class="button1" size="mini">{{typebutton}}</button>
+          </block>
+
+          <block wx:if="{{changeType}}">
+            <form bindsubmit="update_type" class="change">
+                <radio-group class="radio-group" bindchange="radioChange">
+                    <label class="radio"><radio value="admin" checked="{{choose_admin}}">管理员</radio></label>
+                    <label class="radio"><radio value="vip" checked="{{choose_vip}}">会员</radio></label>
+                    <label class="radio"><radio value="member" checked="{{choose_member}}">成员</radio></label>
+                </radio-group>
+                <button form-type="submit" size="mini" class="button2">保存</button>
+            </form>
+          </block>
+        </view>
+
+
+  </block>
+  <button bindtap="getAll">获取报名记录</button>
+  <block wx:if="{{search}}">
+            <text> {{search_name}} </text>   
+            <text> {{search_number}} </text> 
+            <text> {{search_active}} </text> 
+            <text>{{data1}}</text>
+  </block>
+</view>

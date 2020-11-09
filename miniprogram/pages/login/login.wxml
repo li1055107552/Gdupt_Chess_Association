@@ -1,0 +1,32 @@
+<!--pages/login/login.wxml-->
+
+<view class="former">
+
+    <!-- 头部空白部分 -->
+    <view class="title"></view>
+
+    <view class="login">
+        <form  bindsubmit="check_submit">
+
+          <view class="newer">
+              <text space="nbsp">\n学   号 :  </text>
+              <input type="number" id="number" placeholder="请输入11位学号" placeholder-class="plaseholder" bindinput="number" confirm-type="next" maxlength="11" />
+          </view>
+          
+          <view class="newer">
+              <text space="nbsp">\n密   码 :  </text>
+              <input type="password" id="password" placeholder="请输入密码" placeholder-class="plaseholder" bindinput="password" confirm-type="done" />
+          </view>
+
+          <view class="newUsers">
+              <button bindtap="newUsers" class="newUsers">注册新会员</button>
+          </view> 
+
+          <button form-type="submit" value="    登  录    " class="submit" >登  录</button>
+
+          <text>\n</text>
+        
+        </form>
+    </view>
+
+</view>

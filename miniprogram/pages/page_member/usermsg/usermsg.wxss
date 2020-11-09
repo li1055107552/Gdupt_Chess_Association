@@ -1,0 +1,5 @@
+/* pages/page_vip/usermsg/usermsg.wxss */
+
+.text{
+  text-align: center;
+}

@@ -14,6 +14,21 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// 生成验证码
+function getCode(long){
+    var code = ''
+    var random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+    for (var i = 0; i < long; i++) {
+      if(i == 0)
+        var index = Math.floor(Math.random() * 9+1)
+      else
+        var index = Math.floor(Math.random() * 10)
+      code += random[index];
+    }
+    return Number(code)
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  getCode:getCode
 }

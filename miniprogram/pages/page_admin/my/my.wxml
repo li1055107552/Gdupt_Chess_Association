@@ -1,0 +1,40 @@
+<!--pages/page_admin/my/my.wxml-->
+
+<view class="all">
+    <view class="title">
+        {{title}}
+    </view>
+    <view class="userinfo">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </view>
+
+    <view class="buttons">
+
+        <view class="usermsg">
+            <button class="usermsg" bindtap="usermsg">用户信息</button>
+        </view>
+
+        <view class="history">
+            <button class="history" bindtap="history">活动历史</button>
+        </view>
+
+        <view class="active">
+            <button class="active" bindtap="active">活动报名</button>
+        </view>
+
+        <view class="clockcard">
+            <button class="clockcard" bindtap="clockcard">活动打卡</button>
+        </view>
+
+
+
+    </view>
+
+    <view class="back">
+            <button class="back" bindtap="back">返回主页</button>
+    </view>
+
+</view>
+
+

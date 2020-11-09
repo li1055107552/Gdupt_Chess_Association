@@ -1,0 +1,9 @@
+/* pages/page_admin/active/active.wxss */
+
+.all{
+  position: fixed
+}
+
+.type{
+  margin-bottom: 20rpx;
+}

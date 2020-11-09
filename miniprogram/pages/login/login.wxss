@@ -1,0 +1,75 @@
+/* pages/login/login.wxss */
+
+.former{
+  padding: 2.2rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-align: center;
+}
+
+.login{
+  display: flex;  
+  flex-direction: column;   /*排列方向：垂直*/
+  justify-content: center;  /*内容调整：居中*/
+  text-align:left;
+  box-shadow: 0 0 0.5rem gray;
+}
+
+.title{
+  height: 260rpx;
+  width: 100%;
+}
+
+.newer{
+  display: flex;
+  justify-content: center;  /*内容居中*/
+  align-items: center;
+  padding-top: 20rpx;
+}
+
+.newer text{
+  font-size: 15px;
+  border-color: black;
+  color: rgb(110, 110, 110);
+}
+
+.newer input{
+  align-self: flex-end;
+  font-size: 0.7rem;
+  color: black;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 0.3rem;
+  padding-left: 25px;
+  width: 50%;
+}
+
+.newUsers{
+  font-size: 10px;
+  border: none;
+  outline: none;
+  padding: 0;
+  text-align: right;
+  background-color: white;
+  margin-top: 8px;
+  margin-left: 55%;
+  color: rgba(0, 0, 255, 0.692);
+  right: 30px;
+}
+
+.newUsers button::after{
+  border: none;
+}
+
+.submit{
+  height:auto;
+  width:80%;
+  outline: none;
+  padding:0;
+  background-color:rgb(4,190,2);
+  color: white;
+  border: none;
+  text-align: center;
+  line-height:auto;
+  margin-top:1rem;
+}

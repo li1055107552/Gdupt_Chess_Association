@@ -1,8 +1,19 @@
 
 <view>
-  <form>
-    <button form-type="submit" bindtap="onAdd">执行</button>
-  
-  </form>
 
+  <button  bindtap="onAdd">执行</button>
+  <text>\n</text>
+  <button bindtap="changecode1">管理员密钥</button>
+  <text selectable="true">\t{{admin_code}}\n\n</text>
+
+  <button bindtap="changecode2">会员密钥</button>
+  <text selectable="true">\t{{vip_code}}\n\n</text>
+
+  <button bindtap="changecode3">成员密钥</button>
+  <text selectable="true">\t{{member_code}}\n\n</text>
+
+  <button bindtap="changecode4">活动验证码</button>
+  <text selectable="true">\t{{active_code}}\n\n</text>
+
+  <button bindtap="newcollection">创建集合</button>
 </view>

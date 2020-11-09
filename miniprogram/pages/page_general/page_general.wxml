@@ -1,0 +1,51 @@
+<!--pages/page_general/page_general.wxml-->
+<view class="all">
+
+    <!-- 开头的标题 -->
+    <view class="title">{{title}}</view>
+
+    <!-- 头像 + 昵称 -->
+    <view class="msg">
+      <image src="{{avatarUrl}}"></image>
+      <text>{{nickname}}</text>
+    </view>
+
+    <!-- 按钮栏 -->
+    <view class="pushbutton">
+
+      <block>
+        <view class="group" id="usermsg" bindtap="click">
+          <image src="../../img/usermsg.png" id="usermsg" catchtap="click"></image>
+          <text id="usermsg" catchtap="click">用户信息</text>
+        </view>
+      </block>
+      
+
+      <view class="group" id="history" bindtap="click">
+        <image src="../../img/history.png" id="history" catchtap="click"></image>
+        <text id="history" catchtap="click">活动历史</text>
+      </view>
+
+      <view class="group" id="active" bindtap="click">
+        <image src="../../img/enter.png" id="active" catchtap="click"></image>
+        <text id="active" catchtap="click">活动报名</text>
+      </view>
+      
+      
+      <view class="group" id="clock" bindtap="click">      
+        <image  src="../../img/clock.png" id="clock" catchtap="click"></image>
+        <text id="clock" catchtap="click">活动签到</text>
+      </view>
+
+      <view class="group" id="more">      
+        <view class="dot1"></view>
+        <view class="dot2"></view>
+        <view class="dot3"></view>
+        <view class="dot2"></view>
+        <view class="dot1"></view>
+      </view>
+
+    </view>
+
+
+</view>

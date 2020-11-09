@@ -1,0 +1,11 @@
+<!--test/test.wxml-->
+
+<button bindtap="add_memberActive">123</button>
+<text>\n</text>
+<button bindtap="tongzhi">发送模版</button>
+<button bindtap="login">登录</button>
+<button bindtap="add">添加数据</button>
+<button bindtap="time">时间</button>
+<input bindinput="set" placeholder="用户"></input>
+<input bindinput="number" placeholder="帐号"></input>
+<button bindtap="onAdd">添加测试用户</button>

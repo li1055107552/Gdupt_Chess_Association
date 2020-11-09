@@ -1,0 +1,80 @@
+/* pages/page_general/page_general.wxss */
+
+.all,.msg,.group{
+  display: flex;
+  flex-direction: column; /* 主轴向下 */
+  padding-bottom: 20rpx;
+}
+
+.msg{
+  align-items: center;  /* 容器居中 */
+  width: 100%;
+  padding: 190rpx 0 250rpx 0;
+}
+.msg text{
+  color: gray;
+  padding-top: 20rpx;
+}
+.msg image{
+  width: 135rpx;
+  height: 135rpx;
+  border-radius: 50%;
+}
+
+.title,.nickname{
+  color: gray;
+  font-size: 16px;
+}
+.title{
+  padding-left: 5rpx;
+}
+
+.pushbutton{
+  display: flex;
+  flex-wrap: wrap;
+  border-top: rgb(190, 190, 190) solid 1rpx;
+  border-bottom: rgb(190, 190, 190) solid 1rpx;
+}
+.group{
+  justify-content: center;
+  align-items: center;
+  width: 249rpx;
+  height: 250rpx;
+  border-right: rgb(190, 190, 190) solid 1rpx;
+  border-bottom: rgb(190, 190, 190) solid 1rpx;
+}
+.group image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.group text{
+  align-items: center;
+  padding-top: 10rpx;
+}
+
+#clock,#more{
+  border-bottom: none;
+}
+
+#more{
+  flex-direction: row;
+}
+.dot1,.dot2,.dot3{
+  margin: 5rpx;
+  background-color: rgb(190, 190, 190);
+  border-radius: 50%;
+}
+.dot1{
+  width: 20rpx;
+  height: 20rpx;
+}
+.dot2{
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: 5rpx;
+}
+.dot3{
+  width: 20rpx;
+  height: 20rpx;
+  margin-bottom: 5rpx;
+}

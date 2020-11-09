@@ -1,53 +1,70 @@
 <!--miniprogram/pages/active/active.wxml-->
 <view class="title">
-  <text>棋 协 活 动 报 名</text>
+	<text>棋 协 活 动 报 名</text>
 </view>
 
 <view class="activeTotal">
-  <form class="activeform" name="activeform" report-submit bindsubmit="submitTemplateMessageForm" report-submit="true">
-    
-    <view class="activer">
-      <text>姓名</text>
-      <input type="text" placeholder="请输入您的姓名" placeholder-class="plaseholder" auto-focus="true" bindinput="name" id="name"></input>
-    </view>  
+	<form class="activeform" name="activeform" bindsubmit="check_submit">
 
-    <view class="activer">
-      <text>电话</text>
-      <input type="number" placeholder="请输入联系方式" placeholder-class="plaseholder" bindinput="tel" id="tel" maxlength="11"></input>
-    </view>  
+		<view class="msg">
+			<text>姓 名</text>
+			<input type="text" placeholder="请输入您的姓名" placeholder-class="plaseholder" bindblur="setNTN" id="name"></input>
+		</view>
 
-    <view class="activer">
-      <text>学号</text>
-      <input type="number" placeholder="请输入您的学号" placeholder-class="plaseholder" bindinput="number" id="number" maxlength="11"></input>
-    </view>  
+		<view class="msg">
+			<text>电 话</text>
+			<input type="number" placeholder="请输入联系方式" placeholder-class="plaseholder" bindblur="setNTN" id="tel" maxlength="11"></input>
+		</view>
 
-    <view class="activer">
-      <text>学院</text>
-      <input type="text" placeholder="请输入所在学院" placeholder-class="plaseholder" bindinput="school" id="school"></input>
-    </view>  
+		<view class="msg">
+			<text>学 号</text>
+			<input type="number" placeholder="请输入您的学号" placeholder-class="plaseholder" bindblur="setNTN" id="number" maxlength="11"></input>
+		</view>
 
-    <view class="activer">
-      <text>班级</text>
-      <input type="text" placeholder="请输入所在班级" placeholder-class="plaseholder" bindinput="classname" id="classname"></input>
-    </view>
-
-      <text>\n活动项目:\n</text>
-   <view class="activer">
-      <checkbox-group bindchange="checkboxChange">
-          <label><checkbox value="象棋">象棋</checkbox></label><text space="nbsp"></text>
-          <label><checkbox value="三国杀">三国杀</checkbox></label><text>\n</text>
-          <label><checkbox value="围棋">围棋</checkbox></label>
-          <label><checkbox value="会员培训">会员培训</checkbox></label>
-          <label><checkbox value="其他">其他</checkbox></label>
-       </checkbox-group>
-    </view>
-
-    <view class="textatea">
-      <input type="text" placeholder="备注栏：" placeholder-class="plaseholder" bindinput="other" id="other"></input>
-    </view>  
     <text>\n</text>
-    <button form-type="submit" value="确认报名" class="submit" >确认报名</button>
 
-  </form>
+		<view class="pickall">
+			<picker mode="multiSelector" bindcolumnchange="instituteColumnChange" value="{{IIndex}}" range="{{institute}}">
+				<view class="pick">
+            <text class="lable">校 区\t</text><text space="emsp">:  </text>
+            <text class="range">{{institute[0][IIndex[0]]}}</text>
+            
+            <text class="lable">\n学 院\t</text><text space="emsp">:  </text>
+            <text class="range">{{institute[1][IIndex[1]]}}</text>
+				</view>
+			</picker>
+
+			<picker mode="multiSelector"bindcolumnchange="classnameColumnChange" value="{{CIndex}}" range="{{classname}}">
+				<view class="pick">
+					<text class="lable">专 业\t</text><text space="emsp">:  </text>
+          <text class="range">{{classname[0][CIndex[0]]}}</text>
+
+					<text class="lable">\n班 级\t</text><text space="emsp">:  </text>
+          <text class="range">{{classname[1][CIndex[1]]}} - {{classname[2][CIndex[2]]}}</text>
+				</view>
+			</picker>
+		</view>
+
+		<view class="activeList" wx:if="{{isshow}}">
+			<text>\n活动项目:\n</text>
+			<view wx:for='{{activeList}}' wx:key='key' class="active">
+					<label>活动名称：{{activeList[index].activeName}}</label>
+					<label>活动编码：{{activeList[index].activeCode}}</label>
+					<label>地点：{{activeList[index].activeArea}}</label>
+					<label>开始时间：{{showtime[index][0]}}</label>
+					<label>结束时间：{{showtime[index][1]}}</label>
+					<label>截止时间：{{showtime[index][2]}}</label>
+					<button id="{{index}}" bindtap="pick" class="pickButton" style="{{pickBtn[index][1]}}" disabled="{{!activeList[index].state_enter}}">{{pickBtn[index][2]}}</button>
+			</view>
+		</view>
+		<view wx:if="{{!isshow}}" class="tips">当前无可报名的活动！</view>
+
+		<view class="textatea">
+			<input type="text" placeholder="备注栏：" placeholder-class="plaseholder" bindinput="setNTN" id="other"></input>
+		</view>
+		<text>\n</text>
+		<button form-type="submit" value="确认报名" class="submit" disabled="{{!isshow}}">确认报名</button>
+
+	</form>
 
 </view>

@@ -1,60 +1,62 @@
 
-<view class="former"> 
+<view class="all"> 
 
-    <form action="" bindsubmit="check_submit" bindreset="resets" class="login">
+    <form bindsubmit="check_submit" bindreset="resets" class="former">
         
-        <view class="newer1">
-          <text space="ensp">用户名  </text>
-          <input type="text" id="username" placeholder="请设置用户名" placeholder-class="plaseholder" bindinput="username" focus="true" confirm-type="next" maxlength="8" />
-        </view>
-        
-        <text>\n</text>
-
-        <view class="newer">
-          <text space="nbsp">姓    名</text>
-          <input type="text" id="number" placeholder="请输入姓名" placeholder-class="plaseholder" bindinput="name" confirm-type="next" />
+        <view class="msg">
+          <text space="nbsp">    昵 称  </text>
+          <input type="text" id="nickname" placeholder="请设置昵称" placeholder-class="plaseholder" bindblur="setMsg" focus="true" confirm-type="next" maxlength="8" />
         </view>
 
-        <text>\n</text>
-        
-        <view class="newer">
-          <text space="nbsp">学    号</text>
-          <input type="number" id="number" placeholder="请输入学号" placeholder-class="plaseholder" bindinput="number" confirm-type="next" maxlength="11" />
+        <view class="msg">
+          <text space="nbsp">    姓 名  </text>
+          <input type="text" id="name" placeholder="请输入姓名" placeholder-class="plaseholder" bindblur="setMsg" confirm-type="next" />
         </view>
-
-        <text>\n</text>
         
-        <view class="newer">
-          <text space="nbsp">学    院</text>
-          <input type="text" id="number" placeholder="请输入学院" placeholder-class="plaseholder" bindinput="school" confirm-type="next"/>
+        <view class="msg">
+          <text space="nbsp">    学 号  </text>
+          <input type="number" id="number" placeholder="请输入11位学号" placeholder-class="plaseholder" bindblur="setMsg" confirm-type="next" maxlength="11" />
         </view>
-
-        <text>\n</text>
         
-        <view class="newer">
-          <text space="nbsp">班    级</text>
-          <input type="text" id="number" placeholder="请输入班级" placeholder-class="plaseholder"  bindinput="classname" confirm-type="next"/>
+        <view class="pickall">
+          <picker mode="multiSelector" class="pick" bindchange="instituteChange" bindcolumnchange="instituteColumnChange" value="{{IIndex}}" range="{{institute}}">
+            <view class="pick">
+                <text class="lable">校 区\t</text><text space="emsp">:  </text>
+                <text class="range">{{institute[0][IIndex[0]]}}</text>
+                
+                <text class="lable">\n学 院\t</text><text space="emsp">:  </text>
+                <text class="range">{{institute[1][IIndex[1]]}}</text>
+            </view>
+          </picker>
+
+          <picker mode="multiSelector" class="pick" bindchange="classnameChange" bindcolumnchange="classnameColumnChange" value="{{CIndex}}" range="{{classname}}">
+            <view class="pick">
+              <text class="lable">专 业\t</text><text space="emsp">:  </text>
+              <text class="range">{{classname[0][CIndex[0]]}}</text>
+
+              <text class="lable">\n班 级\t</text><text space="emsp">:  </text>
+              <text class="range">{{classname[1][CIndex[1]]}} - {{classname[2][CIndex[2]]}}</text>
+            </view>
+          </picker>
         </view>
-
-        <text>\n</text>
         
-        <view class="newer">
-          <text space="nbsp">密    码</text>
-          <input type="password" id="password" placeholder="请设置密码" placeholder-class="plaseholder"  bindinput="password" confirm-type="next"/>
+        <view class="msg">
+          <text space="nbsp">设置密码</text>
+          <input type="password" id="password" placeholder="请设置密码" placeholder-class="plaseholder"  bindblur="setMsg" confirm-type="next"/>
         </view> 
         
-        <text>\n</text>
-        
-        <view class="newer2">
+        <view class="msg">
           <text>确认密码</text>
-          <input type="password" id="password2" placeholder="请再次输入密码" placeholder-class="plaseholder"  bindinput="password2" confirm-type="done" />
+          <input type="password" id="password2" placeholder="请再次输入密码" placeholder-class="plaseholder"  bindblur="setMsg" confirm-type="done" />
         </view> 
+        
         <text>\n</text>
 
         <button form-type="submit" value="     注册     " class="submit" >注册</button>
         <text class="nbsp2"></text>
         <button form-type="reset"  value="     重置     " class="submit" >重置</button>
-      </form>
+
+    </form>
 
 </view>
 

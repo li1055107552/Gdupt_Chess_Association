@@ -1,0 +1,148 @@
+/* pages/page_admin/active/change/change.wxss */
+
+.button0{
+  font-size: 15px;
+  left: 550rpx;
+}
+
+.search input{
+  font-size: 0.7rem;
+  color: black;
+  flex-grow: 10rem;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 0.15rem;
+  position: relative;
+  left: 15%;
+  margin-right: 20px;
+  vertical-align: middle;
+  padding-left: 25px;
+  width: 45%;
+  top: 15px;
+  margin-bottom: -4%;
+}
+
+
+.form{
+  display: flow-root;
+  padding: 20rpx;
+}
+
+.name,.code,.area,.raceStart,.raceEnd,.enterStart,.enterEnd{
+  display: flex;
+  padding-top: 20rpx;
+  padding-bottom: 10rpx;
+  /* z-index: 1; */
+}
+
+.area,.enterEnd{
+  padding-bottom: 40rpx;
+  z-index: 1;
+}
+
+.name text,.code_lable,.area text{
+  text-align: right;
+  padding: 10rpx;
+  font-size: 15px;
+  flex-grow: 0.3;
+  width: 80px;
+  color: rgb(110, 110, 110);
+  z-index: 1;
+}
+.code_text{
+  position: relative;
+  text-align: left;
+  font-size: 15px;
+  padding: 10rpx;
+  margin-right: 20px;
+  padding-left: 25px;
+  right: 5%;
+  color: rgb(110, 110, 110);
+  width: 45%;
+  z-index: 1;
+}
+
+.name input,.area input{
+  font-size: 0.7rem;
+  border-radius: 10rem;           /*边框圆弧度*/
+  box-shadow: 0 0 0.15rem #aaa; /*底阴影*/
+  padding: 10rpx;
+  position: relative;
+  left: 3%;
+  margin-right: 20px;
+  padding-left: 25px;
+  width: 45%;
+  z-index: 1;
+}
+
+.raceStart,.raceEnd,.enterStart,.enterEnd{
+  padding-top: 40rpx;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.lable{
+  text-align: right;
+  font-size: 15px;
+  margin-left: 40rpx;
+  z-index: 1;
+}
+
+.lable1{
+  display: flex;
+  text-align: right;
+  font-size: 15px;
+  padding: 30rpx 0rpx 5rpx 40rpx;
+  z-index: 1;
+}
+
+.lable2{
+  text-align: left;
+  font-size: 15px;
+  padding-left: 40rpx;
+  z-index: 1;
+}
+
+.lable3{
+  font-size: 16px;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  z-index: 1;
+}
+
+.picker{
+  padding-left: 10rpx;
+  z-index: 1;
+}
+
+.radio{
+  display: inline-flex;
+  flex-grow: 0.3;
+  padding-left: 30rpx;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.activeState,.who{
+  display: flex;
+  padding: 10rpx 5rpx 20rpx 10rpx;  
+  z-index: 1;
+}
+
+.enterstate,.clockstate,.memberIsCode,.vipIsCode{
+  display: flex;
+  padding-top: 50rpx;
+  z-index: 1;
+}
+
+.switch{
+  margin-top: -10rpx;
+  z-index: 1;
+}
+
+.form button{
+  margin-top: 60rpx;
+  background-color:rgb(4,190,2);
+  color: white;
+  z-index: 1;
+}

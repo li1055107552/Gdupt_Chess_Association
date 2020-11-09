@@ -1,0 +1,53 @@
+<!--pages/page_vip/active/active.wxml-->
+<view class="title">
+  <text>棋 协 活 动 报 名</text>
+</view>
+
+<view class="activeTotal">
+  <form class="activeform" name="activeform" report-submit bindsubmit="check_submit" report-submit="true">
+    
+    <view class="activer">
+      <text>姓 名</text>
+      <input type="text" placeholder="请输入您的姓名" placeholder-class="plaseholder" auto-focus="true" bindinput="name" id="name" value='{{name}}' disabled="disabled"></input>
+    </view>  
+
+    <view class="activer">
+      <text>电 话</text>
+      <input type="number" placeholder="请输入联系方式" placeholder-class="plaseholder" bindinput="tel" id="tel" maxlength="11"></input>
+    </view>  
+
+    <view class="activer">
+      <text>学 号</text>
+      <input type="number" placeholder="请输入您的学号" placeholder-class="plaseholder" bindinput="number" id="number" maxlength="11" value="{{number}}" disabled="disabled"></input>
+    </view>  
+
+    <view class="activer">
+      <text>学 院</text>
+      <input type="text" placeholder="请输入所在学院" placeholder-class="plaseholder" bindinput="school" id="school" value="{{school}}" disabled="disabled"></input>
+    </view>  
+
+    <view class="activer">
+      <text>班 级</text>
+      <input type="text" placeholder="请输入所在班级" placeholder-class="plaseholder" bindinput="classname" id="classname" value="{{classname}}" disabled="disabled"></input>
+    </view>
+
+      <text>\n活动项目:\n</text>
+   <view class="activers">
+      <checkbox-group bindchange="checkboxChange">
+          <label><checkbox value="象棋">象棋</checkbox></label><text space="nbsp"></text>
+          <label><checkbox value="三国杀">三国杀</checkbox></label><text>\n</text>
+          <label><checkbox value="围棋">围棋</checkbox></label>
+          <label><checkbox value="会员培训">会员培训</checkbox></label>
+          <label><checkbox value="其他">其他</checkbox></label>
+       </checkbox-group>
+    </view>
+
+    <view class="textatea">
+      <input type="text" placeholder="备注栏：" placeholder-class="plaseholder" bindinput="other" id="other"></input>
+    </view>  
+    <text>\n</text>
+    <button form-type="submit" value="确认报名" class="submit" >确认报名</button>
+
+  </form>
+
+</view>

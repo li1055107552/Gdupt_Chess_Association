@@ -1,0 +1,30 @@
+<!--pages/page_general/clock/clock.wxml-->
+<view class="all">
+
+    <view class="camera">
+      <image src="../../../img/camera.png" bindtap="photo"></image>
+      <text>扫码签到</text>
+    </view>
+
+    <view class="msg" wx:if="{{success}}">
+      <view class="label">
+        <label>活动编码</label>
+        <label>活动名称</label>
+        <label>报名者</label>
+        <label>学号</label>
+        <label>班级</label>
+      </view>
+      <view class="text">
+        <text>{{activeCode}}\n</text>
+        <text>{{activeName}}\n</text>
+        <text>{{name}}\n</text>
+        <text>{{number}}\n</text>
+        <text>{{major}} {{classname}}\n</text>
+      </view>
+
+    </view>
+
+    <button class="btn" wx:if="{{success}}" bindtap="clock" disabled="{{!canClock}}">{{showbtnmsg}}</button>
+
+
+</view>
