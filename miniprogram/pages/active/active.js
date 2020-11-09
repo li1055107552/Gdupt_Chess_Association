@@ -24,31 +24,6 @@ Page({
   onLoad: function () {
     console.log("当前时间戳:" + new Date().getTime())
     var that = this
-    /* 入口检测 */
-    {
-      const st = wx.cloud.database()
-      st.collection("admin").doc('active').get
-      ({
-        success: function (res) {
-          if (res.data.state_page == false) {
-            wx.showModal({
-              content: '报名入口关闭',
-              showCancel: false,
-              success(res) {
-                if (res.confirm)
-                  wx.navigateBack({
-                    delta: 1
-                  })
-                else
-                  wx.navigateBack({
-                    delta: 1
-                  })
-              }
-            })
-          }
-        }
-      })
-    }
 
     /* 获取班级列表 */
     {
@@ -76,7 +51,8 @@ Page({
           type:'member'
         },
         success:function(res){
-          if(res.result.data.length > 0){
+          console.log(res)
+          if(res.result.length != 0){
             that.setData({
               activeList:res.result.data,
               isshow:true
@@ -87,9 +63,7 @@ Page({
           }
           
         },
-        fail(res){
-          console.log(res)
-        },
+        fail:console.error
 
       })
 
@@ -204,6 +178,7 @@ Page({
 
     /* 校验目标是否已报名 */
     check_number: function (e) {
+      console.log(e)
       var that = this
       this.loading('是否已报名......')
 
@@ -252,7 +227,7 @@ Page({
         data:{
           type:'number',
           msg:Number(that.data.number),
-          collectName:'member'
+          collectName:'userList'
         },
         success(res){
           if(res.result == 0){
@@ -350,36 +325,22 @@ Page({
 
   /* 模版信息 */
   sendMsg(e) {
-    console.log(e)
-    // wx.cloud.callFunction({
-    //   name: 'openapi',
-    //   data: {
-    //     action: 'sendTemplateMessage',
-    //     formId: this.data.formId,
-    //     name: this.data.name,
-    //     number: this.data.number,
-    //     school: this.data.school,
-    //     classname: this.data.classname,
-    //     tel: this.data.tel,
-    //     active: this.data.activeType,
-    //     time: this.data.time
-    //   },
-    //   success: res => {
-    //     console.warn('[云函数] [openapi] templateMessage.send 调用成功：', res)
-    //     wx.showModal({
-    //       title: '报名成功',
-    //       content: '请返回微信主界面查看',
-    //       showCancel: false,
-    //       success: function (res) {
-    //         if (res.confirm)
-    //             /* 成功后跳转 */
-    //             wx.navigateTo({
-    //               url: '../index/index',
-    //             })
-    //       }
-    //     })
-    //   }
-    // })
+    // console.log(e)
+    var that = this
+    wx.cloud.callFunction({
+      name:'openapi',
+      data:{
+        action:'sendSubscribeMessage',
+        name: that.data.name,
+        activeName: e.activeName,
+        activeArea: e.activeArea,
+        activeTime: util.formatTime(new Date(e.raceStart))
+      },
+      // success(res){
+      //   console.log(res)
+      // },
+      fail:console.error
+    })
   },
 
   onShareAppMessage:function(){},

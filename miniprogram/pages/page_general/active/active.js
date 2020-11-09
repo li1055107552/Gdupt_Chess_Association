@@ -29,7 +29,8 @@ Page({
           type:wx.getStorageSync('type')
         },
         success:function(res){
-          if(res.result.data.length > 0){
+          console.log(res)
+          if(res.result.length != 0){
             that.setData({
               activeList:res.result.data,
               isshow:true
@@ -40,9 +41,7 @@ Page({
           }
           
         },
-        fail(res){
-          console.log(res)
-        },
+        fail:console.error
 
       })
 
@@ -232,36 +231,21 @@ Page({
 
   /* 模版信息 */
   sendMsg(e) {
-    console.log(e)
-    // wx.cloud.callFunction({
-    //   name: 'openapi',
-    //   data: {
-    //     action: 'sendTemplateMessage',
-    //     formId: this.data.formId,
-    //     name: this.data.name,
-    //     number: this.data.number,
-    //     school: this.data.school,
-    //     classname: this.data.classname,
-    //     tel: this.data.tel,
-    //     active: this.data.activeType,
-    //     time: this.data.time
-    //   },
-    //   success: res => {
-    //     console.warn('[云函数] [openapi] templateMessage.send 调用成功：', res)
-    //     wx.showModal({
-    //       title: '报名成功',
-    //       content: '请返回微信主界面查看',
-    //       showCancel: false,
-    //       success: function (res) {
-    //         if (res.confirm)
-    //             /* 成功后跳转 */
-    //             wx.navigateTo({
-    //               url: '../index/index',
-    //             })
-    //       }
-    //     })
-    //   }
-    // })
+    // console.log(e)
+    wx.cloud.callFunction({
+      name:'openapi',
+      data:{
+        action:'sendSubscribeMessage',
+        name: wx.getStorageSync('name'),
+        activeName: e.activeName,
+        activeArea: e.activeArea,
+        activeTime: util.formatTime(new Date(e.raceStart))
+      },
+      // success(res){
+      //   console.log(res)
+      // },
+      fail:console.error
+    })
   }
   
 })

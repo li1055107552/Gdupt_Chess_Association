@@ -1,17 +1,8 @@
 <!--pages/page_admin/manage/manage.wxml-->
 <view class="all">
 
-    <view class="buttons">
-
-        <view class="other">
-            <button class="other" bindtap="other">其他功能</button>
-        </view>
-
-        <view class="collect">
-            <button class="collect" bindtap="collect">集合查看</button>
-        </view>
-
-    </view>
+        <button bindtap="click" id="changeMsg">成员信息修改</button>
+        <button bindtap="click" id="changeType">批量修改类型</button>
 
 </view>
         

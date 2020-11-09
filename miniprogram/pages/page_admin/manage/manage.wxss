@@ -1,33 +1,16 @@
 /* pages/page_admin/manage/manage.wxss */
 
-.buttons{
+.all{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+}
+
+#changeMsg,#changeType{
   width:75%;
-  text-shadow: 0.5px 0.2px whitesmoke;
-  margin-top: 35%;
-}
-
-.other{
-    width: 160px;
-    height: 45px;
-    border:gold solid 1px;
-    background-color:rgba(200, 120, 200, 0.8);
-    color: rgb(255, 230, 65);
-    text-align: right;
-    border-top-right-radius: 10rem;
-    border-bottom-right-radius: 10rem;
-    margin-bottom: 10px;
-}
-
-.collect{
-    border: gold solid 1px;
-    background-color:rgba(200, 120, 200, 0.8);
-    color: rgb(255, 230, 65);
-    text-align: left;
-    border-top-left-radius: 10rem;
-    border-bottom-left-radius: 10rem;
-    width: 160px;
-    height: 45px;
-    margin-left: 75%;
-    right: 75%;
-    margin-bottom: 10px;
+  color: rgb(255, 230, 65);
+  border:gold solid 1px;
+  background-color:rgba(200, 120, 200, 0.8);
+  border-radius: 10rem;
+  margin-top: 30rpx;
 }

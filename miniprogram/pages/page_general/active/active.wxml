@@ -48,12 +48,12 @@
 		<view class="activeList" wx:if="{{isshow}}">
 			<text>\n活动项目:\n</text>
 			<view wx:for='{{activeList}}' wx:key='key' class="active">
-					<label>活动名称：{{activeList[index].activeName}}</label>
-					<label>活动编码：{{activeList[index].activeCode}}</label>
-					<label>地点：{{activeList[index].activeArea}}</label>
-					<label>开始时间：{{showtime[index][0]}}</label>
-					<label>结束时间：{{showtime[index][1]}}</label>
-					<label>截止时间：{{showtime[index][2]}}</label>
+					<view class="Amsg"><label>活动名称：</label> <text>{{activeList[index].activeName}}</text> </view>
+					<view class="Amsg"><label>活动编码：</label> <text>{{activeList[index].activeCode}}</text> </view>
+					<view class="Amsg"><label>活动地点：</label> <text>{{activeList[index].activeArea}}</text> </view>
+					<view class="Amsg"><label>开始时间：</label> <text>{{showtime[index][0]}} 					</text> </view>
+					<view class="Amsg"><label>结束时间：</label> <text>{{showtime[index][1]}}					</text> </view>
+					<view class="Amsg"><label>截止时间：</label> <text style="color:red">{{showtime[index][2]}}</text></view>
 					<button id="{{index}}" bindtap="pick" class="pickButton" style="{{pickBtn[index][1]}}" disabled="{{!activeList[index].state_enter}}">{{pickBtn[index][2]}}</button>
 			</view>
 		</view>

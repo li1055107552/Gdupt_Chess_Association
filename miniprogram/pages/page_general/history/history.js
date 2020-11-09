@@ -1,10 +1,11 @@
 // pages/page_general/history/history.js
-var utils = require('../../../utils/util')
+
 Page({
 
   // 页面的初始数据
   data: {
-    number:wx.getStorageSync('number')
+    number:wx.getStorageSync('number'),
+    total:0
   },
 
   // 生命周期函数--监听页面加载
@@ -25,13 +26,6 @@ Page({
         })
       }
     })
-
-  },
-
-
-
-  // 用户点击右上角分享
-  onShareAppMessage: function () {
-
   }
+  
 })

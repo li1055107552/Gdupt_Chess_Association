@@ -15,9 +15,9 @@ const db = cloud.database()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  return await db.collection('member').add({
+  return await db.collection('userList').add({
     data:{
-      _id:new Date(event.time).getTime() + event.number,
+      _id:Date.parse(new Date(event.time))/1000 + event.number,
       _openid:wxContext.OPENID,
       nickname:event.nickname,
       name:event.name,

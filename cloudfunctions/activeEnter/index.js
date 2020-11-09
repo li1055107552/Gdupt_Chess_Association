@@ -28,7 +28,7 @@ async function input(event){
       _openid:wxContext.OPENID,
       _id: new Date(event.time).getTime() + event.number,
       name: event.name,
-      tel: event.teltel,
+      tel: event.tel,
       number: event.number,
       campus: event.campus,
       institute: event.institute,

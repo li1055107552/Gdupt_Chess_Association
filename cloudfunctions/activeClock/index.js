@@ -16,12 +16,13 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 const db = cloud.database()
 const _ = db.command
+var code
 
 // 云函数入口函数
 exports.main = async (event) => {
   switch(event.type){
     case "getmsg":{
-      return await getmsg(event)
+      return await checkmsg(event)
     }
     case "update":{
       await Uactive(event)
@@ -31,6 +32,22 @@ exports.main = async (event) => {
   }
 
   return "finish"
+}
+
+async function checkmsg(event){
+
+  var total = await cloud.callFunction({
+    name:"checkMsg",
+    data:{
+      collectName:"A" + event.activeCode,
+      type:"number",
+      msg:event.number
+    }
+  })
+  if(total.result == 0)
+    return false
+  else
+    return await getmsg(event)
 }
 
 async function getmsg(event){

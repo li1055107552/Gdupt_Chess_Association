@@ -1,39 +1,56 @@
 <!--pages/page_admin/my/my.wxml-->
-
 <view class="all">
-    <view class="title">
-        {{title}}
+
+    <!-- 开头的标题 -->
+    <view class="title">{{title}}</view>
+
+    <!-- 头像 + 昵称 -->
+    <view class="msg">
+      <image src="{{avatarUrl}}"></image>
+      <text>{{nickname}}</text>
     </view>
-    <view class="userinfo">
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </view>
 
-    <view class="buttons">
+    <!-- 按钮栏 -->
+    <view class="pushbutton">
 
-        <view class="usermsg">
-            <button class="usermsg" bindtap="usermsg">用户信息</button>
+      <block>
+        <view class="group" id="usermsg" bindtap="click">
+          <image src="../../../img/usermsg.png" id="usermsg" catchtap="click"></image>
+          <text id="usermsg" catchtap="click">用户信息</text>
         </view>
+      </block>
+      
 
-        <view class="history">
-            <button class="history" bindtap="history">活动历史</button>
-        </view>
+      <view class="group" id="history" bindtap="click">
+        <image src="../../../img/history.png" id="history" catchtap="click"></image>
+        <text id="history" catchtap="click">活动历史</text>
+      </view>
 
-        <view class="active">
-            <button class="active" bindtap="active">活动报名</button>
-        </view>
+      <view class="group" id="active" bindtap="click">
+        <image src="../../../img/enter.png" id="active" catchtap="click"></image>
+        <text id="active" catchtap="click">活动报名</text>
+      </view>
+      
+      
+      <view class="group" id="clock" bindtap="click">      
+        <image  src="../../../img/clock.png" id="clock" catchtap="click"></image>
+        <text id="clock" catchtap="click">活动签到</text>
+      </view>
 
-        <view class="clockcard">
-            <button class="clockcard" bindtap="clockcard">活动打卡</button>
-        </view>
-
-
+      <view class="group" id="more">      
+        <view class="dot1"></view>
+        <view class="dot2"></view>
+        <view class="dot3"></view>
+        <view class="dot2"></view>
+        <view class="dot1"></view>
+      </view>
 
     </view>
 
     <view class="back">
-            <button class="back" bindtap="back">返回主页</button>
+        <button class="back" bindtap="back">返回主页</button>
     </view>
+
 
 </view>
 

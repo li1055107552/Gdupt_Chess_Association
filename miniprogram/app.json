@@ -4,72 +4,102 @@
     
     "pages/index/index",
     
+    "pages/study/page/CNchess/basic/basic",
+    "pages/study/study",
+    "pages/study/page/CNchess/CNchess",
+
+    "test/test",
+
     "pages/login/login",
     "pages/news/news",
     "pages/active/active",
-    
-    "pages/admin/admin", 
-    "test/test",
-  
-  "pages/newcomers/newcomers",
-    "pages/page_member/page_member",
-        "pages/page_member/active/active",
-        "pages/page_member/usermsg/usermsg",
-        "pages/page_member/changemsg/changemsg",
-        "pages/page_member/clockcard/clockcard",
-    "pages/page_vip/page_vip",
-        "pages/page_vip/active/active",
-        "pages/page_vip/usermsg/usermsg",
-        "pages/page_vip/changemsg/changemsg",
-        "pages/page_vip/clockcard/clockcard",
-    "pages/page_general/page_general",
-        "pages/page_general/usermsg/usermsg",
-        "pages/page_general/history/history",
-        "pages/page_general/active/active",
-        "pages/page_general/clock/clock",
+    "pages/admin/admin",
+
+    "pages/newcomers/newcomers",
+
     "pages/page_admin/my/my",
-          "pages/page_admin/my/usermsg/usermsg",
-          "pages/page_admin/my/history/history",
-          "pages/page_admin/my/active/active",
-          "pages/page_admin/my/clockcard/clockcard",
     "pages/page_admin/active/active",
-          "pages/page_admin/active/add/add",
-          "pages/page_admin/active/del/del",
-          "pages/page_admin/active/change/change",
-          "pages/page_admin/active/see/see",
-    "pages/page_admin/manage/manage",
-          "pages/page_admin/manage/other/other",          
-          "pages/page_admin/manage/collect/collect"
-    ],
+    "pages/page_admin/manage/manage"
+
+  ],
+  "subpackages": [
+    {
+      "root": "pages/page_admin/my/page/",
+      "name": "pack-admin_my",
+      "pages": [
+        "usermsg/usermsg",
+        "history/history",
+        "active/active",
+        "clock/clock"
+      ]
+    },
+    {
+      "root": "pages/page_admin/active/page/",
+      "name": "pack-admin_active",
+      "pages": [
+        "add/add",
+        "change/change",
+        "see/see",      
+        "QRcode/QRcode"
+      ]
+    }, 
+    {
+      "root": "pages/page_admin/manage/page/",
+      "name": "pack-admin_manage",
+      "pages": [
+        "changeMsg/changeMsg",
+        "changeType/changeType"
+      ]
+    }, 
+    {
+      "root": "pages/page_general/",
+      "name": "pack-general",
+      "pages": [
+        "usermsg/usermsg",
+        "history/history",
+        "active/active",
+        "clock/clock",
+        "page_general"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/login/login": {
+      "network": "all",
+      "packages": ["pack-general"]
+    }
+  },
+
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#ffffff"
   },
-    "tabBar": {
-      "color": "#000000",
-      "selectedColor": "#laad19",
-      "list": [
-        {
-          "pagePath": "pages/page_admin/manage/manage",
-          "iconPath": "img/admin.png",
-          "selectedIconPath": "img/admin.png",
-          "text": "管理"
-        },
-        {
-          "pagePath": "pages/page_admin/active/active",
-          "iconPath": "img/active.png",
-          "selectedIconPath": "img/active.png",
-          "text": "活动"
-        },
-        {
-          "pagePath": "pages/page_admin/my/my",
-          "iconPath": "img/my.png",
-          "selectedIconPath": "img/my.png",
-          "text": "我的"
-        }
-      ]
-    },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#laad19",
+    "list": [
+      {
+        "pagePath": "pages/page_admin/manage/manage",
+        "iconPath": "img/admin.png",
+        "selectedIconPath": "img/admin.png",
+        "text": "管理"
+      },
+      {
+        "pagePath": "pages/page_admin/active/active",
+        "iconPath": "img/active.png",
+        "selectedIconPath": "img/active.png",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/page_admin/my/my",
+        "iconPath": "img/my.png",
+        "selectedIconPath": "img/my.png",
+        "text": "我的"
+      }
+    ]
+  },
+
   "sitemapLocation": "sitemap.json"
 }

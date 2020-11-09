@@ -3,7 +3,13 @@
 <view class="former">
 
     <!-- 头部空白部分 -->
-    <view class="title"></view>
+    <view class="title">
+        <!-- 
+            <text style="font-size:14px;"> 大赛工作人员请使用以下测试账号进行登录 \n</text>
+            <text style="font-size:14px;"> 测试账号1：12345678907 \t密码：test07 \n</text>
+            <text style="font-size:14px;"> 测试账号2：12345678909 \t密码：test09 </text> 
+        -->
+    </view>
 
     <view class="login">
         <form  bindsubmit="check_submit">
@@ -12,10 +18,10 @@
               <text space="nbsp">\n学   号 :  </text>
               <input type="number" id="number" placeholder="请输入11位学号" placeholder-class="plaseholder" bindinput="number" confirm-type="next" maxlength="11" />
           </view>
-          
+
           <view class="newer">
               <text space="nbsp">\n密   码 :  </text>
-              <input type="password" id="password" placeholder="请输入密码" placeholder-class="plaseholder" bindinput="password" confirm-type="done" />
+              <input type="password" id="password" placeholder="请输入密码" placeholder-class="plaseholder" bindinput="password" confirm-type="done" bindconfirm="check_submit"/>
           </view>
 
           <view class="newUsers">

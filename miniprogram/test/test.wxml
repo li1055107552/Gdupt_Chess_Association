@@ -9,3 +9,67 @@
 <input bindinput="set" placeholder="用户"></input>
 <input bindinput="number" placeholder="帐号"></input>
 <button bindtap="onAdd">添加测试用户</button>
+<button bindtap="send">尝试发送</button>
+<button bindtap="exchange">转码</button>
+<input placeholder="命名" bindinput="set"></input>
+
+<view id="font1">
+  <text>象围棋-361812</text>
+</view>
+<view id="font2">
+  <text>象围棋-361812</text>
+</view>
+<view id="font3">
+  <text>象围棋-361812</text>
+</view>
+<view id="font4">
+  <text>象围棋-361812</text>
+</view>
+<view id="font5">
+  <text>象围棋-361812</text>
+</view>
+<view id="font6">
+  <text>象围棋-361812</text>
+</view>
+<view id="font7">
+  <text>象围棋-361812</text>
+</view>
+<view id="font8">
+  <text>象围棋-361812</text>
+</view>
+<view id="font9">
+  <text>象围棋-361812</text>
+</view>
+<view id="font10">
+  <text>象围棋-361812</text>
+</view>
+<view id="font11">
+  <text>象围棋-361812</text>
+</view>
+<view id="font12">
+  <text>象围棋-361812</text>
+</view>
+<view id="font13">
+  <text>象围棋-361812</text>
+</view>6
+<view id="font14">
+  <text>象围棋-361812</text>
+</view>
+<view id="font15">
+  <text>象围棋-361812</text>
+</view>
+<view id="font16">
+  <text>象围棋-361812</text>
+</view>
+<view id="font17">
+  <text>象围棋-361812</text>
+</view>
+<view id="font18">
+  <text>象围棋-361812</text>
+</view>
+<view id="font19">
+  <text>象围棋-361812</text>
+</view>
+<view id="font20">
+  <text>象围棋-361812</text>
+</view>

@@ -31,41 +31,53 @@ async function member(event){
   const rs = await db.collection("active").where({
     "who":_.eq("member"),       //类型
     "enterStart":_.lte(time),   // 开始报名时间 < 当前时间
-    "enterEnd":_.gte(time)       // 当前时间 < 结束报名时间
+    "enterEnd":_.gte(time)      // 当前时间 < 结束报名时间
   }).count()
   const total = rs.total
-
-  // 计算取得次数
-  const batchTimes = Math.ceil(total / 100)
-
-  // 获取数据
-  const task = []
-  for(let i = 0; i < batchTimes; i++){
-    const promise = await db.collection("active").where({
-      "who":_.eq("member"),       // 类型 == member（全校师生）
-      "enterStart":_.lte(time),   // 开始报名时间 < 当前时间
-      "enterEnd":_.gte(time)       // 当前时间 < 结束报名时间
-    }).get()
-    task.push(promise)
-  }
-  // 等待所有并返回
-  return (await Promise.all(task)).reduce((acc, cur) => {
+  if (total == 0) {
     return {
-      data: acc.data.concat(cur.data),
+      length:0
     }
-  })
+  }
+  else{
+    // 计算取得次数
+    const batchTimes = Math.ceil(total / 100)
+
+    // 获取数据
+    const task = []
+    for(let i = 0; i < batchTimes; i++){
+      const promise = await db.collection("active").where({
+        "who":_.eq("member"),       // 类型 == member（全校师生）
+        "enterStart":_.lte(time),   // 开始报名时间 < 当前时间
+        "enterEnd":_.gte(time)       // 当前时间 < 结束报名时间
+      }).get()
+      task.push(promise)
+    }
+    // 等待所有并返回
+    return (await Promise.all(task)).reduce((acc, cur) => {
+      return {
+        data: acc.data.concat(cur.data),
+      }
+    })
+  }
+  
 
 }
 
 async function vip(event){
-    // 获取总数
-    const rs = await db.collection("active").where({
-      "who":_.eq("member").or(_.eq("vip")),       //类型
-      "enterStart":_.lte(time),
-      "enterEnd":_.gte(time)
-    }).count()
-    const total = rs.total
-
+  // 获取总数
+  const rs = await db.collection("active").where({
+    "who":_.eq("member").or(_.eq("vip")),       //类型
+    "enterStart":_.lte(time),
+    "enterEnd":_.gte(time)
+  }).count()
+  const total = rs.total
+  if (total == 0) {
+    return {
+      length:0
+    }
+  }
+  else{
     // 计算取得次数
     const batchTimes = Math.ceil(total / 100)
 
@@ -86,6 +98,7 @@ async function vip(event){
         data: acc.data.concat(cur.data),
       }
     })
+  }
 
 }
 
@@ -97,26 +110,33 @@ async function secretary(event){
     "enterEnd":_.gte(time)
   }).count()
   const total = rs.total
+  if (total == 0) {
+    return {
+      length:0
+    }
+  }
+  else{
+    // 计算取得次数
+    const batchTimes = Math.ceil(total / 100)
 
-  // 计算取得次数
-  const batchTimes = Math.ceil(total / 100)
-
-  // 获取数据
-  const task = []
-  for(let i = 0; i < batchTimes; i++){
-    const promise = await db.collection("active").where({
-      "who":_.eq("member").or(_.eq("vip")).or(_.eq("secretary")),      //类型
-      "enterStart":_.lte(time),
-      "enterEnd":_.gte(time)
-    }).get()
-    task.push(promise)
+    // 获取数据
+    const task = []
+    for(let i = 0; i < batchTimes; i++){
+      const promise = await db.collection("active").where({
+        "who":_.eq("member").or(_.eq("vip")).or(_.eq("secretary")),      //类型
+        "enterStart":_.lte(time),
+        "enterEnd":_.gte(time)
+      }).get()
+      task.push(promise)
+    }
+    
+    // 等待所有并返回
+    return (await Promise.all(task)).reduce((acc, cur) => {
+      return {
+        data: acc.data.concat(cur.data),
+      }
+    })
   }
   
-  // 等待所有并返回
-  return (await Promise.all(task)).reduce((acc, cur) => {
-    return {
-      data: acc.data.concat(cur.data),
-    }
-  })
 
 }

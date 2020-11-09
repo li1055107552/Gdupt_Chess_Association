@@ -33,7 +33,8 @@ Page({
             }
           })
         }
-      }
+      },
+      fail:console.error
     })
 
     wx.clearStorage()
@@ -44,12 +45,16 @@ Page({
     if(wx.getStorageSync('from') == "index"){
       var that = this
       wx.cloud.callFunction({
-        name:'trylogin',
+        name:'login',
+        data:{
+          action:"trylogin"
+        },
         success:function(res){
           if(res.result != false){
             that.inquiry(res);  //进入询问
           }
-        }
+        },
+        fail:console.error
       })
     }
   },
@@ -77,7 +82,6 @@ Page({
 
     // 本地校验
     check_submit:function(){
-
         if(this.data.number == 18034530129 && this.data.password == 92103543081)
           wx.navigateTo({
             url: '../admin/admin',
@@ -114,10 +118,12 @@ Page({
       wx.cloud.callFunction({
           name: "login",
           data: {
+            action: "login",
             number: that.data.number,
             password: that.data.password,
           },
           success: function (res) {
+            console.log("login success" + res)
             if (res.result == "T"){
               that.saveMsg(that.data.number);
             }
@@ -146,8 +152,10 @@ Page({
   saveMsg(e){
     var that = this
     const db = wx.cloud.database()
+    console.log("saveMsg")
     db.collection("userList").where({ number:e }).get({
       success:function(res){
+        console.log(res)
         /* 跳转前，信息保存至本地缓存 */
         {
           wx.setStorageSync('id', res.data[0]._id)              //id
@@ -164,10 +172,10 @@ Page({
           wx.setStorageSync('time', res.data[0].time)           //时间
           wx.setStorageSync('type', res.data[0].type)           //类型
         }
-          wx.showToast({
-            title: '登陆成功',
-          })
-
+        wx.showToast({
+          title: '登陆成功',
+          duration:600
+        })
         /* 判断跳转页面 */
         if (res.data[0].type == 'member' || res.data[0].type == 'vip' || res.data[0].type == 'secretary') {
           setTimeout(function () {
@@ -178,20 +186,17 @@ Page({
         }
         else if (res.data[0].type == 'admin') {
           setTimeout(function () {
-            wx.switchTab({
+            wx.reLaunch({
               url: '../page_admin/my/my?canlogin=' + that.data.canlogin,
-              success:function(res){
-                wx.switchTab({
-                  url: '../page_admin/my/my?canlogin=' + that.data.canlogin,
-                })
-              }
             })
+            // that.tab()
           }, 600)                    
         }
-      }
+      },
+      fail:console.error
     })
   },
-    
+  
   inquiry(e){
     var that = this
     wx.showModal({
@@ -210,11 +215,10 @@ Page({
 
   /* 用户点击右上角分享 */
    onShareAppMessage: function () { },
-
-  onUnload:function(){
-    wx.navigateBack({
-      delta:100
-    })
-  }
+   
+   /*生命周期函数--监听页面卸载 */
+   onUnload: function () {
+     // wx.clearStorageSync()
+   }
 
 })

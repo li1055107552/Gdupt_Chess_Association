@@ -31,7 +31,6 @@ Page({
       var decode = base.decode(str)
       var index = decode.indexOf(":")
       var activeCode = decode.substr(index + 1,decode.length)
-
       if(index == -1 || activeCode == NaN){
         wx.showToast({
           title: '不支持二维码类型',
@@ -42,7 +41,28 @@ Page({
         wx.showLoading({
           title: '识别中......',
         })
-        this.getmsg(activeCode)
+        var isExist = -1
+        var that = this
+        // 判断集合是否存在
+        const db = wx.cloud.database()
+        db.collection('A' + activeCode).count({
+          success(){
+            isExist = 1
+          },
+          complete(res){
+            if(isExist == 1){
+              that.getmsg(activeCode)
+            }
+            else{
+              wx.hideLoading()
+              wx.showModal({
+                title:"温馨提示",
+                content:"活动不存在",
+                showCancel:false
+              })
+            }
+          }
+        })
       }
 
     } catch (error) {
@@ -65,36 +85,64 @@ Page({
         activeCode:activeCode
       },
       success(res){
-        for (let i = 0; i < res.result.length; i++) {
-          if(res.result.history[i].activeCode == Number(activeCode)){
-            var index = i
-            break
+        console.log(res)
+        if(res.result == false){
+          wx.hideLoading()
+          wx.showModal({
+            title:"温馨提示",
+            content:"您尚未报名该活动",
+            showCancel:false
+          })
+        }
+        else if(res.result.active.state_clock){  //允许打卡
+          // 寻找该活动 在个人历史中的下标位置
+          for (let i = 0; i < res.result.length; i++) {
+            if(res.result.history[i].activeCode == Number(activeCode)){
+              var index = i
+              break
+            }
           }
-        }
-        var state = res.result.person.state
-        if(state == "已报名"){
+          var state = res.result.person.state
+          if(state == "已报名"){
+            that.setData({
+              canClock:true
+            })
+          }
+          else if(state == "已签到"){
+            that.setData({
+              showbtnmsg:"您已成功签到"
+            })
+          }
           that.setData({
-            canClock:true
+            success:true,
+            activeCode: res.result.active.activeCode,
+            activeName: res.result.active.activeName,
+            name:     res.result.person.name,
+            number:   res.result.person.number,
+            major:    res.result.person.major,
+            classname:res.result.person.classname,
+            showbtnmsg:"当前不可签到"
           })
+          wx.hideLoading()
         }
-        else if(state == "已签到"){
+        else{
           that.setData({
-            showbtnmsg:"您已成功签到"
+            success:true,
+            activeCode: res.result.active.activeCode,
+            activeName: res.result.active.activeName,
+            name:     res.result.person.name,
+            number:   res.result.person.number,
+            major:    res.result.person.major,
+            classname:res.result.person.classname,
+            index:    index                         //处于个人历史的下标
           })
+          wx.hideLoading()
         }
-        that.setData({
-          success:true,
-          activeCode: res.result.active.activeCode,
-          activeName: res.result.active.activeName,
-          name:     res.result.person.name,
-          number:   res.result.person.number,
-          major:    res.result.person.major,
-          classname:res.result.person.classname,
-          index:    index                         //处于个人历史的下标
-        })
-        wx.hideLoading()
+        
+      },
+      fail(res){
+        console.log("集合不存在")
       }
-
     })
   },
 

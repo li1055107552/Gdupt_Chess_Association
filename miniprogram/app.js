@@ -22,6 +22,12 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+
+    // 小程序开发大赛 开启Debug
+    // wx.setEnableDebug({
+    //   enableDebug: true,
+    // })
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -45,10 +51,62 @@ App({
     
 
     this.globalData = {
-      userInfo:{}
+
+      /**
+       * 同时还需修改两个背景链接
+       *  pages/index/index.wxss 
+       * .backgroundImage{}
+       * .card_2_background{}
+       * 
+       */ 
+      directory:"https://tenyding.cn/photo/miniprogram/gdupt",
+
+      userInfo:{
+        // avatarUrl:"/miniprogram/img/logo.jpg"
+      }
     }
     
     
   }
 })
     
+
+// "pages/study/study",
+
+// "pages/index/index",
+// "pages/login/login",
+// "pages/news/news",
+// "pages/active/active",
+// "pages/admin/admin",
+// "test/test",
+
+// "pages/newcomers/newcomers",
+
+// "pages/page_general/page_general",
+//     "pages/page_general/usermsg/usermsg",
+//     "pages/page_general/history/history",
+//     "pages/page_general/active/active",
+//     "pages/page_general/clock/clock",
+
+// "pages/page_admin/my/my",
+//   "pages/page_admin/my/usermsg/usermsg",
+//   "pages/page_admin/my/history/history",
+//   "pages/page_admin/my/active/active",
+//   "pages/page_admin/my/clock/clock",
+
+// "pages/page_admin/active/active",
+//   "pages/page_admin/active/add/add",
+//   "pages/page_admin/active/change/change",
+//   "pages/page_admin/active/see/see",      
+//   "pages/page_admin/active/QRcode/QRcode",
+
+// "pages/page_admin/manage/manage",
+//   "pages/page_admin/manage/changeMsg/changeMsg",
+//   "pages/page_admin/manage/changeType/changeType",
+
+
+//   "pages/study/CNchess/CNchess",
+//   "pages/study/INTchess/INTchess",
+//   "pages/study/weiqi/weiqi",
+//   "pages/study/gobang/gobang",
+//   "pages/study/sgs/sgs"

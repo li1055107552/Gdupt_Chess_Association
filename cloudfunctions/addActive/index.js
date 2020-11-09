@@ -40,8 +40,6 @@ exports.main = async (event) => {
         who:   event.who,              //活动对象
         state_enter:  Boolean(event.state_enter),    //报名状态
         state_clock:  Boolean(event.state_clock),    //打卡状态
-        code_member:  Boolean(event.code_member),    //非会员打卡
-        code_vip:     Boolean(event.code_vip),       //会员打卡
         /* 数量 */
         enrolment:  0,                 //已报名人数
         clocked:    0                  //已打卡人数
@@ -75,17 +73,15 @@ exports.main = async (event) => {
         /* 时间 */
         time:       time,              //创建时间
         lastChangeTime:time,           //最后修改时间
-        raceStart: event.raceStart,    //比赛开始时间
-        raceEnd:   event.raceEnd,      //比赛结束时间
-        enterStart:event.enterStart,   //报名开始时间
-        enterEnd:  event.enterEnd,     //报名结束时间
+        raceStart:  event.raceStart,    //比赛开始时间
+        raceEnd:    event.raceEnd,      //比赛结束时间
+        enterStart: event.enterStart,   //报名开始时间
+        enterEnd:   event.enterEnd,     //报名结束时间
         /* 状态 */
         state:event.state,            //活动状态
         who:  event.who,              //活动对象
         state_enter: Boolean(event.state_enter),     //报名状态
         state_clock: Boolean(event.state_clock),     //打卡状态
-        code_member: Boolean(event.code_member),     //非会员打卡
-        code_vip:    Boolean(event.code_vip),        //会员打卡
         /* 数量 */
         enrolment:  0,                 //已报名人数
         clocked:    0                  //已打卡人数

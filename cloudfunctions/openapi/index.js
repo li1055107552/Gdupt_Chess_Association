@@ -7,8 +7,8 @@ cloud.init()
 exports.main = async (event, context) => {
   console.log(event)
   switch (event.action) {
-    case 'sendTemplateMessage': {
-      return sendTemplateMessage(event)
+    case 'sendSubscribeMessage': {
+      return sendSubscribeMessage(event)
     }
     case 'getWXACode': {
       return getWXACode(event)
@@ -22,38 +22,27 @@ exports.main = async (event, context) => {
   }
 }
 
-async function sendTemplateMessage(event) {
+async function sendSubscribeMessage(event) {
   const { OPENID } = cloud.getWXContext()
   
-  const sendResult = await cloud.openapi.templateMessage.send({
+  const sendResult = await cloud.openapi.subscribeMessage.send({
     touser: OPENID,
-    templateId: 'hi06XFZXHrayi3Jr5q1psqwTc93hWWEN_x2_e4nVM30',
-    formId: event.formId,
-//    page: 'pages/openapi/openapi',
+    templateId: 'ph4wTjTOU4bIh8BUojs_NPutyf0b4SBl0mMeozB1Ty4',
     data: {
-      keyword1: {
-        value: event.name,
+      name4:{   // 报名人
+        value:event.name
       },
-      keyword2: {
-        value: event.number,
+      thing1:{  // 活动名称
+        value:event.activeName
       },
-      keyword3: {
-        value: event.school,
+      thing3:{  // 活动地点
+        value:event.activeArea
       },
-      keyword4: {
-        value: event.classname,
+      date5:{   // 活动时间
+        value:event.activeTime
       },
-      keyword5: {
-        value: event.tel,
-      },
-      keyword6: {
-        value: event.active,
-      },
-      keyword7: {
-        value: event.time,
-      },
-      keyword8: {
-        value: '报名成功',
+      thing6:{  //备注
+        value:'报名成功'
       }
     }
   })

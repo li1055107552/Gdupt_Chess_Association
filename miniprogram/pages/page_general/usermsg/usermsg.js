@@ -231,7 +231,7 @@ Page({
     wx.cloud.callFunction({
       name:"update_userList",
       data:{
-        number:that.data.number,
+        id:wx.getStorageSync('id'),
         key:key,
         data:data
       },

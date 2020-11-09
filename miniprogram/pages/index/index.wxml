@@ -1,53 +1,71 @@
-<!--index.wxml-->
+<view class="backgroundImage"></view>
 
-<view class="container"> 
+<scroll-view class="scroll-box" scroll-x="true" scroll-with-animation="true" scroll-into-view="{{toView}}" bindtouchstart="touchStart" bindtouchend="touchEnd" enable-flex="true" style="height:{{winHeight}}px;width:{{winWidth}}px">
 
-    <!-- 头像部分 -->
-    <view class="userinfo">
-        <!-- 未授权 -->
-        <image wx:if="{{!canlogin}}" class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image>
-        <!-- 已授权 -->
-        <block wx:else>
-          <image class="userinfo-avatar" src="{{avatarUrl}}" mode="cover"></image>
-          <text class="userinfo-nickname">{{nickname}}</text>
-        </block>
-    </view>
+	<!-- 比赛 -->
+	<view class="card-box" id="card_0">
+		<view class="card_0">
 
-    <!-- 欢迎大字 -->
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
-    </view>
+			<view class="card_match">
+				<image class="card_match_cloud" src="img/cloud.png" mode="aspectFit"></image>
+        
+				<image class="card_match_titleimg" src="img/match(2).png" mode="aspectFit"></image>
+        <text space="emsp">小知识：\n  {{knowledge}}</text>
+        <view class="card_match_btn">
+          <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="login">登录/报名</button>
+          <button bindtap="gotoMiniprogram" id="clock">棋钟</button>
+			  </view>
+			</view>
 
-</view>
+		</view>
+	</view>
 
-  <!-- 授权按钮 -->
-  <view class="getUserInfo">
-    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="getUserInfo">{{getuserinfo}}</button>
-  </view>
+	<!-- 主页 -->
+	<view class="card-box" id="card_1">
+		<view class="card_1">
 
-  <view class="zan-dialog {{ showDialog ? 'zan-dialog--show' : '' }}">
-      
-      <view class="zan-dialog__mask" bindtap="toggleDialog" />     <!--点击任意处隐藏-->
+			<view class="card_index">
 
-        <!-- 公告 -->
-        <image bindtap="msg" class="icon" src="../../img/tips.png" id="notice"></image>
-        <!-- 简介 -->
-        <view class="jieshao">
-          <button bindtap="msg" class="jieshao" id="introduce">简介</button>
-        </view>
-        <!-- 蒙版显示内容 -->
-        <view class="zan-dialog__container">
-          <view class="tips">    
-              <text space="emsp">{{text}}</text>
-          </view>
-        </view>
+				<view class="card_index_title">
+					<image src="../../img/logo.jpg" bindlongtap="gotoMiniprogram" id="Wegdupt"></image>
+					<text>广油棋牌协会</text>
+				</view>
+				<text class="card_index_introduce" space="emsp">{{introduce}}</text>
 
-      </view>
-      
-  <view class="buttons">
-        <view class="newcomers" wx:if="{{isShow_newcomers}}">
-            <button bindtap="newcomers" class="newcomers" >加 入 我 们</button>
-        </view>
-      <button bindtap="login" class="button1">登录</button>
-      <button bindtap="active" class="button2">报名</button>
-  </view>
+				<image class="card_index_cloud" src="img/cloud.png" mode="aspectFit"></image>
+
+				<view class="card_index_btn" catchtap="click" id="left">
+					<view class="card_index_btn_group">
+						<image src="img/left.png"></image>
+						<label>比赛</label>
+					</view>
+
+					<view class="card_index_btn_group" catchtap="click" id="right">
+						<label>棋艺</label>
+						<image src="img/right.png"></image>
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+	</view>
+
+	<!-- 棋艺学习/推普 -->
+	<view class="card-box" id="card_2">
+		<view class="card_2">
+			<view class="card_2_background"></view>
+			<view class="card_learn">
+				<text class="card_learn_title">小提示：</text>
+				<view class="card_learn_text">
+					<text space="emsp">  在这里，您将了解到好几种棋的基本下法，更精湛的棋艺我们也会不断更新，同时也期待着您和我们一同探索，并在碰撞的花火中产生和发现哦~</text>
+					<text space="emsp">  同时，我们还会有小知识竞赛等活动，也期待您的参与哦！</text>
+				</view>
+				<button bindtap="study">一起激情四射吧</button>
+			</view>
+		</view>
+	</view>
+
+
+
+</scroll-view>

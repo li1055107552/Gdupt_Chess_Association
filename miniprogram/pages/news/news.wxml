@@ -19,7 +19,7 @@
         </view>
         
         <view class="pickall">
-          <picker mode="multiSelector" class="pick" bindchange="instituteChange" bindcolumnchange="instituteColumnChange" value="{{IIndex}}" range="{{institute}}">
+          <picker mode="multiSelector" class="pick" bindcolumnchange="instituteColumnChange" value="{{IIndex}}" range="{{institute}}">
             <view class="pick">
                 <text class="lable">校 区\t</text><text space="emsp">:  </text>
                 <text class="range">{{institute[0][IIndex[0]]}}</text>
@@ -29,7 +29,7 @@
             </view>
           </picker>
 
-          <picker mode="multiSelector" class="pick" bindchange="classnameChange" bindcolumnchange="classnameColumnChange" value="{{CIndex}}" range="{{classname}}">
+          <picker mode="multiSelector" class="pick" bindcolumnchange="classnameColumnChange" value="{{CIndex}}" range="{{classname}}">
             <view class="pick">
               <text class="lable">专 业\t</text><text space="emsp">:  </text>
               <text class="range">{{classname[0][CIndex[0]]}}</text>

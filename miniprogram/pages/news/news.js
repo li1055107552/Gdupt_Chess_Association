@@ -167,12 +167,12 @@ Page
       data: {
         type: type,
         msg: msg,
-        collectName: 'member'
+        collectName: 'userList'
       },
       success(res) {
         if(type == 'nickname'){
           canNickname = res.result
-        }        
+        } 
         else if(type == 'number'){
           canNumber = res.result
         } 
@@ -210,6 +210,7 @@ Page
         time:util.formatTime(new Date())
       },
       success(res){
+        wx.hideLoading()
         wx.showModal({
           title: '温馨提示',
           content: '注册成功，请牢记密码',

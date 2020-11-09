@@ -1,7 +1,3 @@
 /* pages/page_general/active/active.wxss */
 
 @import "../../active/active.wxss";
-
-#disable{
-  background-color: rgb(200, 200, 200);
-}
