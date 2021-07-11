@@ -33,7 +33,7 @@ page{
   white-space: normal;
   margin: 0 -50rpx;
 }
-.card_0,.card_1,.card_2{
+.card_0,.card_1,.card_2,.card_3{
   box-sizing: border-box;
   height: 80vh;
   width: 80vw;
@@ -152,6 +152,56 @@ page{
   background: rgb(247, 237, 200);
 }
 .card_2_background{
+  position: relative;
+
+  /* 云存储 */
+  /* background-image: url("https://6764-gdupt-qx-1300020785.tcb.qcloud.la/index_Img/skill.jpg?sign=a6b413cf921de19fa8f09df2e26c2543&t=1586794653"); */
+
+  /* 服务器 */
+  background-image: url("https://tenyding.cn/photo/miniprogram/gdupt/indexSkill.jpg");
+
+  
+  background-position: center;
+  background-size: 120%;
+  opacity: 0.6;
+  width: 80vw;
+  height: 80vh;
+  margin-bottom: -80vh;
+}
+.card_learn{
+  position: relative;
+  justify-content: space-around;
+}
+.card_learn_title{
+  font-size: 20px;
+  font-weight: 600;
+  color: rgb(71, 197, 98);
+  padding: 0 20rpx;
+}
+.card_learn_text{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: -8vh;
+}
+.card_learn_text text{
+  line-height: 30px;
+  padding: 0 20rpx;
+}
+.card_learn button{
+  opacity: 0.8;
+}
+.card_learn button::after{
+  content: none;
+}
+
+/* 卡片3 */
+.card_3{
+  background: rgb(247, 237, 200);
+}
+.card_3_background{
   position: relative;
 
   /* 云存储 */

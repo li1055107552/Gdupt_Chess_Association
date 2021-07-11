@@ -12,8 +12,12 @@
 				<image class="card_match_titleimg" src="img/match(2).png" mode="aspectFit"></image>
         <text space="emsp">小知识：\n  {{knowledge}}</text>
         <view class="card_match_btn">
-          <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="login">登录/报名</button>
-          <button bindtap="gotoMiniprogram" id="clock">棋钟</button>
+					
+          <!-- <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="login">登录/报名</button> -->
+					<button open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="login" style="width:25%;margin-right:0;">登录</button>
+					<button open-type="getUserInfo" bindgetuserinfo="getUserInfo" bindtap="gotoactive" style="width:25%;margin-left :0;">报名</button>
+          <button bindtap="gotoMiniprogram" id="clock" style="width:50%;">棋钟</button>
+
 			  </view>
 			</view>
 
@@ -66,6 +70,19 @@
 		</view>
 	</view>
 
-
+	<!-- 棋艺学习/推普 -->
+	<view class="card-box" id="card_3">
+			<view class="card_3">
+				<view class="card_3_background"></view>
+				<view class="card_learn">
+					<text class="card_learn_title">小提示：</text>
+					<view class="card_learn_text">
+						<text space="emsp">  在这里，您将了解到好几种棋的基本下法，更精湛的棋艺我们也会不断更新，同时也期待着您和我们一同探索，并在碰撞的花火中产生和发现哦~</text>
+						<text space="emsp">  同时，我们还会有小知识竞赛等活动，也期待您的参与哦！</text>
+					</view>
+					<button open-type="contact" >联系客服</button>
+				</view>
+			</view>
+		</view>
 
 </scroll-view>

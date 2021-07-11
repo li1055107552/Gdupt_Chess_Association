@@ -10,7 +10,7 @@ Page({
 
   data: {
     toView: `card_${DEFAULT_PAGE}`,
-    list: ['比赛', '棋牌协会', '学习更多'],
+    list: ['比赛', '棋牌协会', '学习更多', '联系客服'],
     knowledge:"早在1956年，象棋就已经成为国家体育项目了哦~",
   },
 
@@ -144,38 +144,60 @@ Page({
     console.log(e)
     var that = this
     if (this.canlogin) {
+      wx.navigateTo({
+        url: '../login/login?canlogin=' + that.canlogin + "&url=index", 
+      })
+      // wx.showModal({
+      //   title:"温馨提示",
+      //   content:"登录/报名",
+      //   cancelText:"点错了",
+      //   confirmText:"确定",
+  
+      //   success(res){
+      //     if(res.confirm){
+      //       wx.showModal({
+      //         title:"温馨提示",
+      //         content:"会员或参加过比赛的\n记得登录后再报名哦~",
+      //         cancelText:"登录",
+      //         cancelColor:"#576B95",
+      //         confirmText:"直接报名",
+      //         success(ress){
+      //           if (ress.cancel) {
+      //             wx.navigateTo({
+      //               url: '../login/login?canlogin=' + that.canlogin + "&url=index", 
+      //             })
+      //           }
+      //           else if (ress.confirm) {
+      //             wx.navigateTo({
+      //               url: '../active/active',
+      //             })
+      //           }
+      //         }
+      //       })
+      //     }
+      //   }
+      // })
+    }
+  },
+  gotoactive(){
+    if (this.canlogin){
       wx.showModal({
         title:"温馨提示",
-        content:"登录/报名",
-        cancelText:"点错了",
-        confirmText:"确定",
-  
+        content:"会员或参加过比赛的\n记得登录后再报名哦~",
+        cancelColor:"#576B95",
+        confirmText:"直接报名",
         success(res){
-          if(res.confirm){
-            wx.showModal({
-              title:"温馨提示",
-              content:"会员或参加过比赛的\n记得登录后再报名哦~",
-              cancelText:"登录",
-              cancelColor:"#576B95",
-              confirmText:"直接报名",
-              success(ress){
-                if (ress.cancel) {
-                  wx.navigateTo({
-                    url: '../login/login?canlogin=' + that.canlogin + "&url=index", 
-                  })
-                }
-                else if (ress.confirm) {
-                  wx.navigateTo({
-                    url: '../active/active',
-                  })
-                }
-              }
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../active/active'
             })
           }
         }
       })
     }
+    
   },
+
   gotoMiniprogram(e){
     switch (e.target.id) {
       case "clock":

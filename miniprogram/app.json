@@ -1,26 +1,18 @@
 {
   "pages": [
-    
-    
     "pages/index/index",
-    
     "pages/study/page/CNchess/basic/basic",
     "pages/study/study",
     "pages/study/page/CNchess/CNchess",
-
     "test/test",
-
     "pages/login/login",
     "pages/news/news",
     "pages/active/active",
     "pages/admin/admin",
-
     "pages/newcomers/newcomers",
-
     "pages/page_admin/my/my",
     "pages/page_admin/active/active",
     "pages/page_admin/manage/manage"
-
   ],
   "subpackages": [
     {
@@ -39,10 +31,10 @@
       "pages": [
         "add/add",
         "change/change",
-        "see/see",      
+        "see/see",
         "QRcode/QRcode"
       ]
-    }, 
+    },
     {
       "root": "pages/page_admin/manage/page/",
       "name": "pack-admin_manage",
@@ -50,7 +42,7 @@
         "changeMsg/changeMsg",
         "changeType/changeType"
       ]
-    }, 
+    },
     {
       "root": "pages/page_general/",
       "name": "pack-general",
@@ -66,10 +58,11 @@
   "preloadRule": {
     "pages/login/login": {
       "network": "all",
-      "packages": ["pack-general"]
+      "packages": [
+        "pack-general"
+      ]
     }
   },
-
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -100,6 +93,5 @@
       }
     ]
   },
-
   "sitemapLocation": "sitemap.json"
 }

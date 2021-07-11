@@ -1,18 +1,20 @@
 
 
 function getmultiArray(e){
+  var year = new Date().getFullYear() - 2000
   var multiArray = [
     ['官渡校区', '西城校区' ,'光华校区'],   //mutiArray[0]
     ['机电工程学院', '自动化学院', '电子信息工程学院', '计算机学院', '建筑工程学院', '理学院', '文法学院', '体育学院', '艺术与设计学院'],        //mutiArray[1]
     ['机械设计制造及自动化', '过程装备与控制工程', '材料成型及控制工程', '工业设计', '工业工程', '能源与动力工程', '焊接技术与工程', '安全工程'], //mutiArray[2]
-    [15,16,17,18,19,20,21,22,23,24],    //mutiArray[3]
+    [year-6,year-5,year-4,year-3,year-2,year-1,year,year+1],    //mutiArray[3]
     [1,2,3,4]    //mutiArray[4]
   ]
   return multiArray
 }
 
 function instituteColumnChange(nowIndex,column,value){   //nowIndex:当前选择的校区 column:修改的列数 value:修改的值
-  var session = [15,16,17,18,19,20,21,22,23,24] //届数
+  var year = new Date().getFullYear() - 2000
+  var session = [year-6,year-5,year-4,year-3,year-2,year-1,year,year+1] //届数
   var classindex = [1,2,3,4]                    //班级
   var data = {
     IArray:[],      //校区[0]   学院[1]
@@ -22,7 +24,7 @@ function instituteColumnChange(nowIndex,column,value){   //nowIndex:当前选择
 
   if(column == 0){    //更改校区时
     if(value == 0){   //改为官渡校区
-      data.IArray[1] = ['机电工程学院', '自动化学院', '电子信息工程学院', '计算机学院', '建筑工程学院', '理学院', '文法学院', '马克思主义学院', '体育学院', '艺术与设计学院'];
+      data.IArray[1] = ['机电工程学院', '自动化学院', '电子信息工程学院', '计算机学院', '建筑工程学院', '生物与食品工程学院', '理学院', '文法学院', '马克思主义学院', '体育学院', '艺术与设计学院'];
       data.CArray[0] = ['机械设计制造及自动化', '过程装备与控制工程', '材料成型及控制工程', '工业设计', '工业工程', '能源与动力工程', '焊接技术与工程', '安全工程'];
       data.IIndex = [0,0]
     }
@@ -32,7 +34,7 @@ function instituteColumnChange(nowIndex,column,value){   //nowIndex:当前选择
       data.IIndex = [1,0]
     }
     else if(value == 2){  //改为光华校区
-      data.IArray[1] = ['环境科学与工程学院', '生物与食品工程学院', '经济管理学院', '外国语学院'];
+      data.IArray[1] = ['环境科学与工程学院', '经济管理学院', '外国语学院'];
       data.CArray[0] = ['环境工程', '环保设备工程', '给排水科学与工程'];
       data.IIndex = [2,0]
     }
@@ -55,23 +57,26 @@ function instituteColumnChange(nowIndex,column,value){   //nowIndex:当前选择
         case 4:   //建筑工程学院
           data.CArray[0] = ['建筑学', '土木工程'];
           break;
-        case 5:   //理学院
+        case 5:   //生物与食品工程学院
+          data.CArray[0] = ['食品科学与工程', '生物技术', '生物工程'];
+          break;
+        case 6:   //理学院
           data.CArray[0] = ['教育技术学', '数学与应用数学', '数学与应用数学（师范）','信息与计算科学', '物理学（师范）', '地理科学', '地理科学（师范）', '新能源科学与工程'];
           break;
-        case 6:   //文法学院
+        case 7:   //文法学院
           data.CArray[0] = ['法学', '汉语言文学', '汉语言文学（师范）', '历史学', '历史学（师范）', '学前教育（师范）'];
           break;
-        case 7:   //马克思主义学院
+        case 8:   //马克思主义学院
           data.CArray[0] = ['思想政治教育（师范）'];
           break;
-        case 8:   //体育学院
+        case 9:   //体育学院
           data.CArray[0] = ['社会体育指导与管理', '体育教育（师范）'];
           break;
-        case 9:   //艺术与设计学院
+        case 10:   //艺术与设计学院
           data.CArray[0] = ['音乐表演', '音乐学', '环境设计'];
           break;
       }
-      data.IArray[1] = ['机电工程学院', '自动化学院', '电子信息工程学院', '计算机学院', '建筑工程学院', '理学院', '文法学院', '马克思主义学院', '体育学院', '艺术与设计学院'];
+      data.IArray[1] = ['机电工程学院', '自动化学院', '电子信息工程学院', '计算机学院', '建筑工程学院', '生物与食品工程学院', '理学院', '文法学院', '马克思主义学院', '体育学院', '艺术与设计学院'];
       data.IIndex = [0,value]
     }
     else if(nowIndex == 1){   //当前为西城校区
@@ -98,18 +103,15 @@ function instituteColumnChange(nowIndex,column,value){   //nowIndex:当前选择
         case 0:   //环境科学与工程学院
           data.CArray[0] = ['环境工程', '环保设备工程', '给排水科学与工程'];
           break;
-        case 1:   //生物与食品工程学院
-          data.CArray[0] = ['食品科学与工程', '生物技术', '生物工程'];
-          break;
-        case 2:   //经济管理学院
+        case 1:   //经济管理学院
           data.CArray[0] = ['市场营销', '会计学', '国际经济与贸易'];
           break;
-        case 3:   //外国语学院
+        case 2:   //外国语学院
           data.CArray[0] = ['英语', '英语（师范）'];
           break;
       // ------
       }
-      data.IArray[1] = ['环境科学与工程学院', '生物与食品工程学院', '经济管理学院', '外国语学院'];
+      data.IArray[1] = ['环境科学与工程学院', '经济管理学院', '外国语学院'];
       data.IIndex = [2,value]
     }
   }

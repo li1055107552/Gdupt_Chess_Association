@@ -26,6 +26,7 @@ Page({
         collectName:"active"
       },
       success: function (res) {
+        console.log(res);
         var before = 0;
         var ing = 0;
         var become = 0;
